@@ -1,0 +1,61 @@
+
+super
+123456
+
+
+chenhuan本地 
+本地主模块服务 ： http://192.168.2.165:8081
+登陆和验证码：http://192.168.2.165:8080
+
+
+接口文档
+http://192.168.2.202:10000/html/web/controller/console/console.html
+账号：guojunqiu 密码 ：123456
+
+测试环境
+服务器ip ： 192.168.2.106  端口：8083（用于接口测试）  8073（用于功能测试）
+服务器主模块服务：http://192.168.2.106:8085
+服务器登录服务：http://192.168.2.106:8080
+
+我本地环境
+我本地ip：192.168.3.189 端口：8084
+
+
+icon地址
+http://iconfont.cn/?spm=a313x.7781069.1998910419.d4d0a486a
+中泓在线新浪微博
+weibo@izhonghong.com   qazwsx123edc4567
+
+
+https://blog.csdn.net/div_ma/article/details/79536634  富文本框编辑
+https://blog.csdn.net/deaidai/article/details/80943307  富文本框图片上传
+https://www.jb51.net/article/145826.htm 富文本框图片上传
+https://www.jianshu.com/p/88c03180554f   富文本框图片上传
+https://www.jianshu.com/p/9e4e4d955d0f 富文本框图片上传
+
+https://blog.csdn.net/qq_36764510/article/details/80595990  table表头动态
+https://github.liub37.com/lb-element-table/zh/guide/#   表格多样化 （合并单元格）
+
+
+dms账号：
+luohu.admin  123456
+luohu.fayanren  123456
+
+
+super 123456
+fayanren 123456 (发言人)
+
+大鹏
+https://192.168.2.232:6443/mng_dapeng/
+admin.test   qwer1234
+ceshi   qwe123456
+
+
+https://blog.csdn.net/qq_38316269/article/details/79453096   vue多级表头
+
+快捷键： ctrl-.    （atom中如何关闭key binding resolve框） 
+
+
+
+
+https://www.cnblogs.com/dmcl/p/7152711.html       Ueditor富文本框 

@@ -1,0 +1,961 @@
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+		
+	</body>
+	<script type="text/javascript">
+		js:简单性，安全型，动态性，跨平台性  (Bom Dom  ECMAScript)
+				基本操作:  1.alert()  页面弹出框(用于确定用户得到信息)
+		  				2.document.write()  向文档写入内容
+		              	3.console.log()  向控制台写入内容
+		              	4.confirm()  用户需要点击确认和返回来取消按钮才能继续操作(如果用户点击确定，返回true;点击取消，返回false)
+		              	5.prompt()  用户需要输入某个信息，如果用户点击确定，返回值为用户输入的值;点击取消，返回值为null;
+
+		原始数据类型：underfined , null(空) , boolean,  number ,string
+		引用类型：对象, 数组， 函数
+
+		underfined:声明变量，但没有对其赋值，比如 var a;
+		boolean:只有2个值(true,false)
+		number: 整型(parseInt) ,  浮点型 (parseFloat) ,  特殊值(Infinity无穷大， NaN 非数字值的特殊字符)
+
+		隐式转换：1.转为布尔类型(underfined,null,NaN,"",0 都转为false;  对象,数值,"abc" 都转为true );
+				  2.转为数值类型  ("",false,null 转为0;  "12" 转为 12 ;)
+				  3.转为字符串  (直接加引号就行) 
+		显示转换：  方法 Boolean() ,  Number() ,  parseInt() ,  parseFloat()
+		
+		Math方法：  Math.round() 四舍五入
+		    Math.max()   返回最大的数
+		    Math.min()   返回最小的数
+		    Math.abs()   返回绝对值
+		    Math.ceil()  向上取整(只要有小数，向上进一位)
+		    Math.floor() 向下取整  ( 等同于parseInt() )
+		    Math.pow(5,2)  表示5的平方
+		    Math.sqrt(100)  表示100开平方
+		    Math.random()  返回0-1中间的随机数，包括0,不包括1;
+		    注意：parseInt( Math.random()*(max-min+1)+min )  表示min到max的随机数
+
+		运算符：1.算术运算符：+ — * /  % (取余)
+				2.一元运算符：++  --
+				3.赋值运算符：=、 += 、-= 、/=、 %=
+				4.比较运算符：>  >= 、 !=   ===     ==   !==
+				5.逗号运算符，typeof运算符(检测数据类型,其中数组是一种比较特殊的对象);
+				6.逻辑运算符：&&且  ||或   !非
+				7.三元运算符：条件? 表达式1：表达式2; (如果条件为true，代码返回值为执行表达式1，否则，执行表达式2)  
+				(注意: = 表示赋值  == 表示相等，会进行隐式转换;  ===表示严格相等，保证类型一样)
+
+		转义字符：组合后改变了原来字符的含义;(\n 换行符  \t 制表符  \r 回车符)
+
+		语句：  1. if语句 (if else)
+				2.switch语句
+					语法：switch (expression) 
+							{
+							case value: statement;
+							break;
+							case value: statement;
+							break;
+							default:statement;
+							}
+
+		循环： 1.while循环(对于次数不确定)
+				语法：while(执行条件){执行操作};
+		
+					<!-- var i=0;
+					while(i<1000){
+						执行结果;
+						i++;
+					} -->
+		
+			   2.do while 循环
+			    语法：do{执行操作}while(执行条件);  (注意：先操作在执行条件)
+			   3.for循环(对于次数确定)
+			    语法：for(参数初始化;条件判断;更新循环变量){循环操作};  
+			    (注意：更新循环变量为最后的操作)
+			
+				break:跳出整个循环，执行循环后面的代码； continue跳出当前循环，执行下一次循环；
+				
+				
+		函数  
+			js不在乎你传入的形参有多少，会把形参和实参对应起来
+
+	数组
+		创建:1. var arr=new Array(长度);  2.var arr=[]; 
+	
+		创建二维数组 1. var arr=[[1,2],[3,4],[5,6],[7,8]];
+					 2. 遍历二维数组
+					 	<!-- for(var i=0;i<arr.length;i++){
+	 						for(var j=0;j<arr[i].length;j++){
+	 							document.write(arr[i][j]+" ");
+	 						}
+	 					}  -->
+	
+		数组遍历：	1. for循环  
+						2. for(var i in 数组名){执行操作}   //遍历数组和对象
+				 		3. 数组名.forEach(function(a){document.write(a+" ");})   //存在兼容性
+				 	  4.for(var a of arr){console.log(a);}   //只能遍历数组，不能遍历对象，此时的a表示遍历数组的每个元素;
+	
+		数组检测：1. Array.isArray(数组名) 该方法返回true/false,如果是数组，返回true;
+	
+		数组转为字符串: 1. arr.toString()   返回字符串
+	
+		回调函数 
+				一.arr.map(function(x){return x*2;})  这里的x相对于每个数组的元素,对每个数组进行操作
+				二.arr.filter(function(x){return x>10;})  对数组的每个元素进行判断
+				三.arr.every()与arr.filter用法一样
+				四.arr.reduce(function(a,b){return a*b},累乘次数)    实现数组元素的累乘，并且第二个参数表示累乘次数
+	
+		方法：
+			1. arr1.concat(arr2,arr3)  用于连接两个或者多个数组，不会改变原有数组
+			2. arr.indexOf(数组元素)   是返回某个元素在数组中的索引，如果在数组中没找到该元素则返回 -1
+			   arr.lastIndexOf()       从后向前搜索,找到则返回索引。如果在数组中没找到字符串则返回 -1
+	
+			3. arr.join("特殊字符")    是把数组中的元素用特殊字符分割(默认为逗号)
+	
+			4. 删除数组中的元素，改变原数组
+				arr.pop()          用于删除数组的最后一个元素并返回删除的这个元素
+			    arr.shift()        用于删除数组的第一个元素并返回删除的这个元素
+			5.  向数组中添加元素，改变原数组
+				arr.push()   		向数组的末尾添加一个或更多元素，并返回新的长度
+				arr.unshift()   	向数组的开头添加一个或更多元素，并返回新的长度
+	
+			6. 截取数组元素，不改变原数组
+				arr.slice(start,end)  截取字符串，包括索引开始的元素，不包括索引结束的元素
+	
+			 7.  添加和删除数组元素  (先删除在添加)
+				arr.splice(参数1，参数2，参数3)  该方法改变原数组
+				参数1代表 从何处索引添加/删除元素(注意：添加元素的时候参数2为0,并且参数1写需要添加元素的具体位置)
+				参数2中 0 代表添加元素，而 具体值 代表删除数量
+			    参数3代表具体添加或者删除的元素
+					    	var arr=[1,2,3,4,5,6];
+							//删除元素  2，3
+							// var del=arr.splice(1,2);
+							// console.log(del);  //[2,3]
+							// console.log(arr);  //[1,4,5,6]
+	
+							//添加元素 4
+							//var push=arr.splice(1,0,4);
+							//console.log(push);  //null
+							//console.log(arr);  //[1,4,2,3,4,5,6]
+	
+	
+							//先删除元素 2 ，在添加元素 1
+							//var depu=arr.splice(1,1,1);
+							//console.log(depu);  //
+							//console.log(arr);   //[1,1,3,4,5,6]
+	
+			8. arr.reverse() 将数组的元素倒置，返回新数组，改变原数组
+			9. arr.sort()    比如：arr.sort(function(a,b){return a-b;})  从小到大排序，改变数组
+		
+		数组小案例:
+		//1.删除数组中重复的元素
+		   var arr1=[1,2,3,2];
+		   var arr2=[];
+		   for(var i in arr1){
+		   		if(arr1.indexOf(arr1[i])==i){
+		   			arr2.push(arr1[i]); //向数组末尾添加新的元素
+		   		}
+		   }
+		   console.log(arr2);
+		//2.打印数组中的最大值
+				function cal(arr){
+					var max=arr[arr.length-1];
+					for (var i = 0; i < arr.length; i++) {
+							if(max<arr[i]){
+								max=arr[i];
+							}
+					}
+					console.log(max);
+				}
+				var arr=[1,4,5];
+				cal(arr);
+		//3.数组中插入一个数，还是按照从大到小的顺序排列
+				function cal(arr,num){
+						var index=arr.length;//定义插入数字的下标
+						for(var i=0;i<arr.length;i++){
+							if(num>arr[i]){
+								index=i;
+								break;
+							}								
+						}
+						//每个元素往后一位赋值
+						for(var j=index;j>arr.length-1;j++){
+							arr[j+1]=arr[j];
+						}
+						arr[index]=num;	 //把num插入到index的位置上去
+						return arr;
+				}
+			//4.数组排序
+				//冒泡排序
+				 for(var i=0;i<arr.length-1;i++){ //i=length-1-length+2  //外层控制轮数
+						for(var j=0;j<arr.length-1-i;j++){   //内层控制次数
+								if(arr[j]>arr[j+1]){
+										var temp = arr[j];
+										arr[j] = arr[j+1];
+										arr[j+1] = temp;
+								}
+						}
+					}
+
+				//选择排序
+					for(var i = 0;i<arr.length-1;i++){
+					 		max = arr[i];
+					 		var k = i;
+					 	for(var j = i+1;j<arr.length;j++){
+					 		if(arr[j]>max){
+					 			max = arr[j];
+					 			k = j;
+					 		}
+					 	}
+					 	arr[k]= arr[i];
+					 	arr[i]= max;
+					}
+					
+					//sort排序（从小到大）
+					 arr.sort(function(a,b){
+	 						return a-b;
+						})
+
+
+
+
+	字符串
+		创建：1. var str=new String("字符串内容");  2.var str=" ";
+		方法: 1. str.charAt(索引值) 返回指定索引位置时的字符
+			     str.charCodeAt(索引值)   返回在指定的位置的字符的 Unicode 编码
+			     str.fromCharCode(Unicode 编码)  将 Unicode 编码转为字符
+	
+			  2. str.concat("连接的字符串1"，"连接的字符串2")     	连接两个或更多字符串，并返回新的字符串
+	
+			  3. str.indexOf("某个字符串值")        返回某个指定的字符串值在字符串中首次出现的位置.没找到返回-1
+	         str.lastIndexOf("某个字符串值")    从后向前搜索字符串
+	
+			  4. str.toUpperCase()  把字符串转换为大写
+			  	 str.toLowerCase()  把字符串转换为小写
+	
+			  5. str.trim()   去除字符串两边的空白
+	
+			  6. 截取字符串，不包括结束索引的那个字符串，返回截取的字符串，不改变字符串本身
+			  		str.slice(索引开始，索引结束) 
+			  		str.substring(索引开始，索引结束)
+			  		str.substr(索引开始，截取长度)
+			  7. str.replace("要替换的字符串"，"添加的新的字符串")
+			  	 str.match("要查找的子串")
+			  8. str.split(分隔符)  返回字符串数组
+
+
+BoM (BoM指浏览器对象模型，使用windom相关方法，让浏览器对象与HTML进行交互)
+	(document是window下的子对象)
+window事件：1.window.onload (当页面加载完成时触发该事件)
+			语法：window.onload = function(){};
+
+			2.window.onscroll(当窗口发生滚动时触发)
+			语法：window.onscroll=function(){};
+			document.body.scrollTop || document.documentElement.scrollTop 滚动条滚动距离
+
+			3.window.onresize (窗口大小发生改变触发)
+			语法：window.onresize=function(){};
+			document.body.clientWidth  可视区域的宽度
+
+			4.计时事件 (windows事件)
+			setInterval(js语句,毫秒)   每隔固定时间执行函数一次
+			语法：var 变量名=setInterval(js语句,毫秒);
+
+			取消定时器  clearInterval(变量名);
+
+			setTimeout(js语句，毫秒)  过固定时间执行，只执行一次
+			语法：var 变量名=  setTimeout(js语句，毫秒); 
+
+			取消延时定时器    cleartimeout(变量名)  
+window下的对象方法: 
+				1. location.href="要跳转的地址";
+				   location.reload() 刷新页面  给按钮绑定点击事件
+				2. history.back()  访问上一个窗口
+				   history.forward()  访问下一个窗口
+				3.  window.close()    关闭窗口
+
+
+
+Dom (描述一个层次化的节点树，可以添加、移除、修改页面的内容);
+    1.document.body 访问body元素
+    2.document.title 访问title标签
+    3.document.URL  获取当前的文档URL
+    4.document.referrer 返回载入当前文档的url,判断是否是链接进入
+
+Dom 创建节点
+	1.document.createElement("标签")  创建元素节点
+	2.document.CreateTextNode("文本")  创建文本节点
+
+	寻找节点(注意:js原生查找节点出现空白节点)
+	1. 节点.childNodes 获取是当前节点的所有子节点集合(包括空白节点和注释节点)
+	2. 节点.children获取是当前所有标签子节点的集合,不包括空白节点;
+	3. 节点.firstChild 父节点的第一个子节点
+	   节点.lastChild 父节点的最后一个子节点(注意：节点.firstChild 相当于 节点.childNodes[0] )
+	4. 节点.parentNode 获取当前节点的父节点
+	5. 节点.previousElementSibling 获取当前节点的前一个同级节点
+	   节点.nextElementSibling     获取当前节点的后一个同级节点
+	6.  element.attributes  获取当前元素节点的所有属性节点
+
+	操作节点
+	1. 父节点.appendChild(子节点)  把子节点添加到父节点的最后
+	2. 父节点.insertBefore(新创建的子节点，已有子节点)；
+		把新创建的子节点插入到父节点的已有子节点前面;
+	3. 父节点.replaceChild(新的子节点，已有子节点)；
+		用新的子节点替代已有子节点；
+	4. 父节点.removeChild(子节点);  删除父节点下指定的子节点
+	5. 节点.cloneNode(true);  true代表复制节点全部;  
+	   节点.cloneNode();      不给true代表复制节点自己,不能复制节点里面的子节点;
+
+	获取节点
+	1.document.getElementById("id名")
+	2.document.getElementsByTagName("标签名")     返回值是集合，通过返回值[下标]来访问元素节点
+	3.document.getElementsByClassName("class名")  返回值是集合，通过返回值[下标]来访问元素节点
+	4.document.getElementsByName("name属性名")    返回值是集合，通过返回值[下标]来访问元素节点
+	5.document.querySelector("css选择器")		  返回满足条件的单个元素。返回第一个满足条件的元素
+	6.document.querySelectorAll("css选择器")      返回值是所有满足条件的数组元素节点集合
+
+	节点属性(获取与设置)
+	1.innerHTML (标签开始到结束的全部内容，不包括自己，只针对于双标签，结果为字符串);
+	2.outerHTML   (标签开始到结束的全部内容，还包括自己，只针对于双标签,结果为字符串)
+	3.innerText  (从标签开始到结束的全部文本内容)
+	4.outerText  设置或获取对象的文本
+	5.id 元素节点的id值
+	6.title  元素节点title属性(鼠标悬停时的提示)
+	7.className  元素的class属性值
+
+	节点自身属性(获取和设置)
+	1. 节点.getAttribute("属性名")  			通过属性名来获取属性值，返回的是属性值；
+	2. 节点.setAttribute("属性名"，"属性值")  	设置属性的值;
+	3. 节点.removeAttribute("属性名") 			移除属性
+
+	标签行内样式
+	1. 获取标签行内样式
+		语法： 节点.style.属性名
+	2.设置标签行内样式的属性
+		语法： 节点.style.属性名="属性值"
+		注意：比如属性名backgroundColor,简写成驼峰式
+
+Dom事件
+	Dom 0级事件：将函数赋值给事件
+		方式一：元素节点.onclick=function(){};
+		  取消Dom 0级事件：元素节点.onclick=null;	
+		 方式二：元素节点.onclick=函数名
+
+	Dom 2级事件：事件捕获阶段(从外向内)、处于事件阶段、事件冒泡阶段(从内向外);
+		方法一：节点.addEventListener("事件名",要执行的函数,布尔值);
+		方法二：节点.removeEventListener("事件名"，要执行的函数，布尔值)
+		(注意：布尔值为true，表示在捕获阶段调用事件处理程序;布尔值为false，表示在冒泡阶段调用事件处理程序)
+
+	事件对象(在触发函数时，会产生一个事件对象，这个对象包含了事件的信息，该对象有一个event参数)
+		1.事件对象.preventDefault()  取消事件的默认行为
+		2.事件对象.stopPropagation()  取消事件进一步捕获或冒泡
+		(比如：节点.onclick=function(e){var eve= e || window.event }   这种写法解决兼容性问题,用于鼠标点击事件;)
+		
+	鼠标事件的event对象：
+		1.clientX  clientY  鼠标到浏览器可视窗口水平、垂直方向的坐标
+		2.pageX    pageY   	鼠标到整个页面的水平方法、垂直方向的坐标
+		3.screenX  screenY  鼠标到电脑屏幕水平、垂直方法的坐标
+		4.offsetX   offsetY 鼠标到目标元素边界的X、Y坐标
+		5.button 按鼠标左键表示0，鼠标滚轮表示1，鼠标右键表示1;
+	元素的大小及定位
+		1.offsetLeft、offsetTop 该元素需要定位; 如果该元素是相对于父标签的定位，该值会以父标签为参照；
+												如果该元素父项上都没有定位，该值会以body为参照
+
+		2. offsetWidth、offsetHeight指元素本身容器的大小
+
+	事件种类(on+事件名)
+		鼠标事件
+			1.click事件 (用户点击鼠标或按下回车键触发)
+			2.dblclick事件 (用户双击鼠标时触发)
+			3.mouseover事件 (鼠标移动到某个元素上方时触发)
+			4.mouseout事件 (鼠标移出某个元素上方时触发)
+			5.mousedown事件 (按下鼠标未弹起触发)
+			6.mouseup事件 (释放鼠标时触发)
+		键盘事件
+			1.keydown事件(用户按下键盘任意键触发，如果按住不放，会重复触发)
+			2.keypress事件(用户按下键盘字符键触发，如果按住不放，会重复触发)
+			3.keyup事件 (用户释放键盘上的按键)
+		  注意：获取每个键的keyCode  document.onkeypress=function(e){alert(e.keyCode);}
+
+		UI事件
+			1.load事件 (页面加载完毕时触发)
+				window.onload=function(){};
+			2.onunload事件(用户从一个页面到另一个页面)
+			3.onresize事件(当窗口大小变化时在window上触发)
+			4.onscroll事件 (当滚动条滚动时触发)
+				document.body.scrollHeight(网页正文的高度)
+				document.body.scrollTop (网页被卷起的高度)
+			5.select事件 (用户选择文本框input的一个或多个字符时触发)
+			6.change事件 (当文本框内容改变且失去焦点时触发)
+			7.focus事件 (当页面元素获得焦点时触发)
+			8.blur事件  (当页面元素失去焦点时触发)
+			9.submit事件 (当用户点击提交按钮时在 <form> 元素上触发)
+			10.reset事件 (当用户点击重置按钮时在<form>元素上触发)
+
+	日期对象(两个对象相减表示毫秒数，两个对象相加表示连接字符串)
+		1.获取系统日期对象
+			getFullYear() 年    getMonth() 月    getDate() 日
+			getDay()    星期    getHours() 时    getMinutes() 分
+			getSeconds    秒    getTime()  毫秒
+		2.设置需要的日期
+			setFullYear(年)     setMonth(月)     setDate(日) 
+		    setHours(时)        setMinutes(分)   setSeconds(秒)        
+		    setTime(毫秒) 
+		3. Date.parse() 方法接受一个表示日期的字符串参数
+			比如： var a=new Date(Date.parse('6/13/2011'));
+		4. 当前日期
+			var date=Date();  //获取当前日期的字符串
+			var data=new Date();  //获取当前的日期对象
+
+			比如：	var date=new Date("2016/08/18 14:20:20");
+				    var date=new Date("2016-08-08");
+
+
+	正则表达式(描述字符模式的对象,直接在客户端验证输入数据)
+		1.创建正则表达式
+			方法一：var box =new RegExp('box');
+			方法二：var box=/^ $/;
+		2.元字符
+			.                    匹配除换行符外的任意字符
+			[a-z0-9]             匹配小写字母数字的任意字符
+			\d==[0-9]            匹配0-9的任意字符
+			\D==[^0-9]           匹配非数字
+			\w==[0-9A-Za-z_]     匹配字母和数字及_
+			\W                   匹配非(字母和数字及_)
+
+		3.重复字符
+			(x?)    匹配0个或者一个x
+			(x*)    匹配0个或者任意多个x
+			(x+)    匹配至少一个x
+			(xyz)+  匹配至少一个(xyz)
+			x{m,n}  匹配最少m个，最多n个
+			{n}     匹配前一项n次
+	(比如software@gootle.com.cn邮箱的验证： /^\w+@\w+(\.[a-zA-Z0-9]{2,3}){1,2}$/)
+	(var exp=/\d+/; var ret=exp.test(要检测的文本); 变量ret会返回一个布尔类型的值)
+
+
+
+
+	面向对象：1.相关术语：
+				类(创建对象的模板,泛指)，对属性和方法的封装 
+				实例(面向对象的基本单位)
+				属性(对象的特征)
+				方法(对象的行为)
+			  2.几大特性：
+			  	封装，继承，多态
+	面向对象编程：以对象为基本编程单位，对象是通过某个类去创建的，js没有类的概念;
+	(注意对于json文件，是数组就可以遍历，是对象就直接写对象.属性名)
+
+	创建对象方法： 
+		1.字面量  
+				var person = {
+					name: "宁哥",
+					age: 18,
+					sayHi: function (){alert('呵呵');}
+				} 
+    2.工厂创建 
+    	方法：在函数内用new指针创建空对象，给对象属性和方法，返回该对象，调用该函数就行
+    	优缺点：大量创建对象时代码量少，js引擎无法判断出对象是经由哪一个函数创建出来的
+    	( 通过该方法   对象 instanceof 函数名  的返回值true，false来判断对象是否由该函数创建的   )
+			
+			//工厂创建对象(大量创建对象，代码少;js引擎无法判断出对象是经由哪一个函数创建出来的)
+			function CreatePerson(name,age){
+				// 1、创建一个空的自定义对象
+		   		var person = new Object();
+		   		// 2、给这个空对象绑定属性、方法
+		   		person.name = name;
+		   		person.age = age;
+		   		person.gender = '男';
+		   		person.sayHi = function() {
+		   			alert('大家好，我是'+person.name);
+		   		}
+		   		// 3、把创建出来的对象返回出去
+			   	return person;
+			}
+			var person1 = CreatePerson('张三', 25);
+			
+	 	3.构造函数 原型
+	 	    方法：构造函数内部实现是使用this指针代替普通函数中创建出来的空对象   
+	 	    优缺点：js引擎可以判断出对象是经由哪一个函数创建出来的 
+	 	    // 通过构造函数来创建对象
+				//构造函数就是类函数，函数名与类名完全一样，无返回值；功能是初始化对象，
+				function CreatePerson (name, age) {
+					// 构造函数内部实现是使用this指针代替普通函数中创建出来的空对象
+					this.name = name;
+					this.age = age;
+					this.sayHi = function() {
+						alert('hello'+this.name);
+					}
+				}
+				// 通过函数的原型对象添加age属性
+				CreatePerson.prototype.sex = '男';
+				// 通过函数的原型对象添加sayHi方法
+				CreatePerson.prototype.sayHello = function() {
+					alert('hello');
+				}
+				// 使用new+构造函数的方式创建对象
+				var person1 = new CreatePerson('张三', 23);
+				// new关键字的作用:
+				// 1、内存中开辟一块存储空间，让构造函数中的this指向这块存储空间，this指向person1
+				// 2、把这块存储空间的地址交给person1这个变量（自定义的对象）
+				//instanceof:由js提供的，专门判断对象是否是某一个类型（构造函数\函数）的示例,返回true，false
+				console.log(person1 instanceof CreatePerson);  
+	 	    
+	 	    原理：见导图
+	 	
+	 		栈内存                                                                    堆内存
+
+	 		var obj                    				new 函数名()
+	 										new开辟一块空间，生成内存地址, var obj=new 函数名() 相当于让变量obj指向这块地址
+	 										严格意义来讲  new 函数名() 才代表对象， obj只能简单看做对象 ;  
+	 																						
+	 	4.动态原型模式
+	    function person(name,age,job) {
+	        //属性
+	        this.name = name;
+	        this.age = age;
+	        this.job = job;
+	        //方法
+	        if(typeof this.sayName != "function"){
+	            Person.prototype.sayName = function () {
+	                alert(this.name)
+	            }
+	        }
+	    }
+
+原型相关:
+	1.原型：调用构造函数时由系统创建出来的实例对象，利用它把对象中相同属性和方法放在原型中，达到节省内存的目的。
+
+  2.原型特性：当我们使用某个对象的属性和方法时，我们会先在对象的内部查找属性和方法，然后再去原型上去查找，没有再去object.prototype上去查找;
+
+	3.原型链：每个对象都有一个对应的原型对象，而这个原型对象本身就是对象，他也有自己的原型对象，由此类推，直到object.prototype为止，object.prototype的	原型对象为null，以上形成了一条链子;
+	 
+	4.每一个对象中都有一个__proto__原型属性，该属性就指向了对象对应的原型，但是该属性我们无法访问;
+
+	5.原型对象的属性constructor,它指向构造函数,可以通过该属性获取到原型对应的构造函数;
+	 
+	 
+	                   构造函数
+			(prototype指向原型)                   原型	 
+											(construtor指向构造函数)
+					                           (__proto__)	
+				实例对象
+				(__proto__指向原型)
+	 			(construtor指向构造函数)
+
+	6.判断方法
+		1.hasOwnProperty方法：判断属性是否是对象的实例属性，是则返回true，不是或没有该属性，返回false; 方法: 对象.hasOwnProperty('属性名')
+	 	2.in操作符，只能判断对象中有没有该属性，无法判断属性是实例属性还是原型属性      方法: '属性名' in 对象 
+	 	3.原型对象.isPrototypeOf(对象)  判断对象是否为另一个对象原始链上的对象   返回true/false;
+
+	 map集合:是一种数据结构，可以表示一种映射(key-value),特点是查找快，不能重复；
+			 var map=new Map([ ['name','小雪'],['age',18] ]);   
+			 1.查询对象的属性值: map.get("age");
+			 2.判断某个对象是否有该键值对:  map.has("age");
+			 3.设置，修改对象的属性:   map.set("sex","男");
+			 4. delete方法删除：    map.delete("age");
+			 5. 清空所有键值对：     map.clear();
+			 6. 遍历：     参数1：属性值；参数2：属性名；
+				 map.forEach(function(value,key){
+				 		console.log(key+"  "+value);
+				 })  
+
+				 for(var arr of map){console.log(arr[0]+"    "+arr[1]);}    of前面是每组键值对的数组
+				 或者 for(var [key,value] of map){console.log(key+"   "+value);}
+				 或者 for(var key of map.keys() ){console.log(key);}
+			 7.map.size 属性个数
+
+	 继承：将父函数相同的属性和方法传给子函数，同时子函数可以创建不同的属性和函数；
+	 			一．通过call或者apply来把父函数的对象修改为子函数的对象，通过传参获得父函数相同的属性和方法
+	 					// 创建出第一个函数（父函数\父类）
+						function CreateAnimal (name, age) {
+							this.name = name;
+							this.age = age;
+							this.sayHi = function () {
+								alert('hello');
+							}
+						}
+						function CreatePerson (name, age) {
+							// 利用call调用执行第一个函数，并修改他的指针指向为person对象
+							CreateAnimal.call(this, name, age);
+							// 添加本函数独有的属性和方法
+							this.sayBye = function(){
+								alert('bye-bye');
+							}
+						}
+	 			二．原型继承：创建一个父构造函数的对象，将这个对象给子构造函数的原型；让子类的原型construtor指向自身的构造函数；创建并使用子类对象
+	 					// 父函数
+						function CreateAnimal (name,age) {
+							this.name = name;
+							this.age = age;
+							this.sayHi = function () {
+								alert('hi');
+							};
+						}
+						// 子函数
+						function CreatePerson (gender) {
+							this.gender = gender;
+							this.sayBye = function() {
+								alert('bye');
+							};
+						}
+						CreatePerson.prototype = new CreateAnimal('宁哥', 24);
+						CreatePerson.prototype.constructor = CreatePerson;
+						var per = new CreatePerson('男');
+						console.log(per);
+
+     		三．组合继承：通过call继承实例相关的属性，通过原型继承原型中的方法；
+     								创建一个父构造函数的对象，将这个对象给子构造函数的原型；
+     								让子类的原型construtor指向自身的构造函数；创建并使用子类对象；
+						function CreateAnimal (name, age) {
+							this.name = name;
+							this.age = age;
+							CreateAnimal.prototype.sayHi = function () {
+								alert('hi');
+							};
+						}
+						// 子类函数：通过call继承实例相关的属性，通过原型继承原型中的方法
+						function CreatePerson (name, age, gender) {
+							CreateAnimal.call(this, name, age);
+							this.gender = gender;
+						}
+						// 使用原型获取到父类的原型方法
+						// 因为只是想获取到父类的原型方法，所以不需要给父类的属性传参
+						CreatePerson.prototype = new CreateAnimal();
+						CreatePerson.prototype.constructor = CreatePerson;	
+						// 把子类的constructor属性改回来
+						var per1=new CreatePerson('小雪','23','女');		
+						console.log(per1);
+
+	this指针(谁调用了函数，this就指向谁)
+	 1.普通函数：普通函数是由window调用，所以普通函数里面的this指向window
+	 2.setInterval计时里面的函数由定时器执行的，而计时器由window调用，所以定时器中函数里面this指向window；
+	 3.事件中，函数里面的this是由触发事件的div标签来调用的，所以this指向该div标签；
+	 4.构造函数的对象是new创建的，并且构造函数里面的方法与属性由对象调用，所以构造函数的this指向这个对象
+
+	作用域与作用域链:
+		1.作用域：js没有块级作用域，  function(){ } 函数里面的变量为局部变量 ,变量必须var声明才成立;
+							window对象下就在全局作用域，对象和函数就是在局部作用域；
+							变量和函数并不总是可用的，限定其可用性的范围即作用域，作用域的使用提高了程序逻辑的局部性，增强程序的可靠性
+		2.作用域链：作用域链决定了哪些数据能被函数访问。当一个函数创建后，它的作用域链会被创建此函数的作用域中可访问的数据对象来填充；
+	   						js所有的量都存在某一个作用域中，除了全局作用域，每一个量都是存在某个局部作用域中，
+	   						在试图访问一个变量时js引擎会从当前作用域开始向上查找直到Global全局作用域停止；
+		3.举例子：    
+				1.对作用域的理解
+		  			var A=1;//全局作用域
+						function B(){
+							var C=2;
+							console.log(E);
+							function D(){
+							  var E=3;
+							  console.log(A);   
+							}
+						}			
+				2.function x2(){
+						var c=9;//局部变量出来会被销毁
+					}
+					console.log(c); //n is underfined
+								
+				3. function cal(){
+					 	s=1;  //此处的s变量没有var，所以该变量为全局变量
+					 }
+					 cal();
+					 console.log(s);  //1
+
+			  4. function x4(){
+					 	console.log(e);  //underfined  其实这里的变量e已经提升了,相当于在打印前加 var e;
+					 	var e=1;
+					 	console.log(e);  //1
+					 }
+					 x4();
+						 
+		闭包:
+			1.定义:函数内部包含其他子函数或子对象，其他子函数引用了父函数的局部变量，内部函数作为外部函数的返回值，这样就形成了闭包；
+			2.特性:当外部函数执行完毕之后，其内部的局部变量不会随着外部函数的执行完毕而销毁，而是会被内部函数所引用，会一直存在内存中
+			3.函数自调用(闭包) :  (function (形参i){执行与i相关的操作})(实参i)
+			4.相关案例
+						1.对闭包的理解
+						function cal(){
+								var a=1;
+								return function(){
+									a+=1;
+									console.log(a);
+								}
+							}
+							var sam=cal();
+							sam();  //2
+							sam();  //3  在原先的变量叠加
+							var sem=cal();  //重新生成一个环境
+							sem();  //2
+	
+		   			2. 对函数自调用的理解
+		   				var btns=document.querySelectorAll('.btn');
+							var divs=document.querySelectorAll('.content');
+							for (var i=0;i<divs.length;i++) {
+								divs[i].style.display="none";
+							}
+							for(var j=0;j<btns.length;j++){
+								(function(j){
+									btns[j].onmouseover=function(){
+										divs[j].style.display="block";
+									}
+								})(j);
+								(function(j){   此处的j为形参
+									btns[j].onmouseout=function(){
+										divs[j].style.display="none";// 闭包，函数里面的内容预加载
+									}
+								})(j);   此处的j为实参
+							}            
+
+
+		ajax
+			1.特点:异步请求，局部刷新
+			2.定义:通过在后台与服务器进行少量数据交换，ajax可以使网页实现异步更新,可以在不重新加载整个网页的情况下，对网页的某部分进行更新
+			3.同步：数据请求发出后，等待数据返回，只有当数据返回后，在进行其他操作，否则就一直等；
+	 	   	异步：数据请求方式为异步请求，当请求发送出去后，先处理其他事务，等数据获取到本地再处理数据；
+			4.ajax 4步走:   (ajax用于返回一个json类型的数据)
+					1.创建请求对象
+						var xhr;
+						if(window.XMLHttpRequest){
+							xhr=new XMLHttpRequest(); //标准浏览器获取对象
+						}else if(window.ActiveXObject){
+							xhr=new ActiveXObject("Msxml2.XMLHTTP");  //IE6浏览器
+						}else{
+							throw new Error("不支持Ajax");
+						}
+						//http协议：超文本传输协议，规定了客户端和服务器端传输交互的约定，通过这个协议才能让客户端和服务器端正确的传输
+						//http通信的2大步骤：1.请求：客户端向服务器端请求数据    2：响应：服务器端反馈给客户端的数据和状态
+						
+					2.给请求对象配置请求方式、请求地址、请求参数、请求方法（默认为异步，true）  端口默认80端口
+						xhr.open('GET', 'http://127.0.0.1:8020/Day06AJAX基础/data.json?user=宁哥&pass=123456&'+Math.random(), true); 
+						//拼接随机数，导致url每次也不一样。就可以保证浏览器在缓存中找不到数据，而是从服务器中请求数据
+					3.监听请求状态
+						xhr.onreadystatechange = function() {
+									 //readyState 请求对象的状态码   (0:请求未初始化 1：链接已建 2：已收到请求  3：正在处理请求  4：请求处理完成且响应该请求)  
+									 //status 服务器响应码（200资源正常，404请求资源找不到，500服务器内部错误）
+								if (xhr.readyState == 4 && xhr.status == 200) { 
+										console.log(xhr.responseText);//xml.responseText为获取数据字符串
+										JONS.parse(xhr.responseText);//把字符串转换为对象格式(反序列化)
+										//序列化:把对象转为字符串      方法  JSON.stringify(对象)
+										//对于xml文件，获取数据方法 xhr.responseXML,它相当于document节点，在对xml文件里面的标签节点进行操作
+								}
+						}
+					4.发送请求
+						xhr.send(null); //加null增强代码的健壮性
+						//注意：如果为post请求，需要在请求头拼接， xhr.send('user='+encodeURI(nameVal) + '&pass=' + encodeURI(passVal))
+					  //encodeURI(nameVal)  可以将字符串作为url进行编码
+						
+			5.ajax封装
+					    //method:请求方式    url:请求地址     param:请求参数      
+					    //successCallBackFn:数据请求成功回调函数     failCallBackFn:数据请求失败回调函数
+							function (method,url,param,successCallBackFn,failCallBackFn) {
+									var xhr;
+									if(window.XMLHttpRequest){
+										xhr=new XMLHttpRequest();
+									}else if(window.ActiveXObject){
+										xhr=new ActiveXObject("Msxml2.XMLHTTP");
+									}else{
+										throw new Error("不支持Ajax");
+									}
+									
+									
+									if(method=='GET'||method=='get'){
+										xhr.open(method,url+"?"+param,true);
+										xhr.send(null);
+									}else if(method=='POST'||method=='post'){
+										xhr.open(method,url,true);
+										xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+										xhr.send(param);
+									}else{
+										throw new Error("请求方式不正确");
+									}
+			
+									xhr.onreadystatechange=function(){
+										if(xhr.readyState==4){
+											if(xhr.status==200){
+												successCallBackFn(JSON.parse( xhr.responseText ) );
+											}else{
+												failCallBackFn("请求数据失败");
+											}
+											
+										}
+									}	
+							}
+
+		 	6.json:一种轻量级的数据交换格式;
+				jsonp:它是可以解决主流浏览器的跨域数据访问的一种模式,由于同源策略(协议/域名/端口),所以跨域;
+							一般来说位于 server1.example.com 的网页无法与不是 server1.example.com的服务器沟通，
+							而 HTML 的<script> 元素是一个例外。利用 <script> 元素的这个开放策略，网页可以得到从其他来源
+							动态产生的 JSON 资料，而这种使用模式就是所谓的 JSONP;
+
+					//封装json库
+					//url： 请求地址    param： 请求参数，格式为对象格式；    callBackFn： 回调函数
+					function jsonp(url,param,callBackFn){
+						//1.动态创建script标签
+						var script=document.createElement("script");
+						//2.生成回调函数的名字
+						var callBackFnName = 'cb'+new Date().getTime();
+						window[callBackFnName] = callBackFn;
+						url+="?callback="+callBackFnName;
+						console.log(callBackFn);
+						//3.定义参数
+						if(param){
+							for(var propName in param){
+								url+="&"+propName+"="+param[propName];
+							}
+						}
+						//4.设置script的src属性拼接到url
+						script.src=url;
+						//5.添加标签
+						document.body.appendChild(script);
+						//6.请求完毕删除标签
+						script.onload=function(){
+							document.body.removeChild(script);
+						}
+						
+					}
+					
+		
+		设计模式:
+				1.单例模式：通过单例创建出来的对象，只初始化（实例化）一次，以后调用创建方法所获取到的对象永远是第一次调用所创建出来的对象。
+						function CreatPerson (name) {
+							this.name = name;
+						}					
+						CreatPerson.prototype.sayHi = function (){
+							console.log('hello');
+						}							
+						var initPerson = (function(){
+							var person = null;
+							return function (name) {
+								if (!person) {
+									person = new CreatPerson(name);
+								}
+								return person;
+							}
+						})();
+						
+						var obj1 = initPerson('小明');
+						var obj2 = initPerson('小红');
+						console.log(obj1);	//小明	
+						console.log(obj2);	//小明	
+						console.log(obj1==obj2); //true
+						
+						
+				2.代理设计模式
+						var Flower=function(name){
+							this.name=name;
+						}
+						var xiaoming={
+							//送花(送给谁)
+							sendFlower:function(target){
+								var flower=new Flower("玫瑰花");
+								target.receiveFlower(flower);
+							}
+						}
+						//代理人小兰
+						var xiaolan=function(){
+							//代理具有接受花的功能
+							
+						}
+						var xiaohong={
+							//接受花的方法
+							receiveFlower:function(flower){
+								console.log("很开心收到"+flower.name);
+							}
+						}
+						
+				3.观察者设计模式
+				var saleHouse={
+					//存储联系方式（知道某个人的联系方式）
+					clientMap:new Map(),
+					//订阅
+					addListener:function(name,callBackFn){
+						this.clientMap.set(name,callBackFn);
+					},
+					//通知谁订阅
+					trigger:function(name,houseName,housePrice){
+						var callBackFn=this.clientMap.get(name);
+							if(!callBackFn){
+								console.log('不好意思，没有'+name+'这个人');
+								return;
+							}
+							callBackFn(name,houseName,housePrice);
+						}				
+				}
+				saleHouse.addListener('小雪',function(name,houseName,housePrice){
+					console.log(name+":"+houseName+":"+housePrice);
+				})
+				
+				saleHouse.trigger('小雪','回龙观',3000000);
+				saleHouse.trigger('小明','龙泽',3000000);
+				
+				4.适配器设计模式
+				//谷歌地图
+				var GoogleMap = {
+					//展示地图的方法
+					show : function () {
+						console.log("谷歌地图！！");
+					}
+				}	
+				//百度地图
+				var BaiduMap = {
+					//百度地图展示的方法名字叫做load
+					load : function () {
+						console.log("百度地图！！");
+					}
+				}		
+				//百度地图适配器
+				var BaiduAdapter = {
+					show : function () {
+						BaiduMap.load();
+					}
+				}	
+				//渲染地图数据的方法（咱们自己使用的）
+				var renderMap = function (map) {
+					map.show();
+				}		
+				renderMap(GoogleMap);
+				renderMap(BaiduAdapter);
+				
+		cookie
+			1.session:运行在服务器端的缓存
+			2.cookie:是运行在客户端,用于存储访问者的计算机中的变量,同一台计算机通过浏览器请求某个页面时,
+							 就会发送这个cookie,它是以键值对的形式保存的,可以通过js来创建和取回cookie;
+							 cookie是以纯文本的形式存储于文件中,要保存用户名和密码,需要加密;
+			3.cookie操作
+					1.获取cookie
+						var cookies=document.cookie; 
+					2.设置cookie
+						document.cookie = "name=" + escape("小 雪");
+					3.设置过期时间
+						var date=new Date(); //获取当前的时间
+						//将date设置为10天后的时间
+						date.setTime(date.getTime()+10*24*3600*1000);
+						document.cookie="user=xxx;expires="+date.toGMTString();
+					4.删除cookie(立即删除，设置过期时间小于当前系统时间)
+						var date2=new Date();
+						date2.setTime(0);
+						document.cookie="name=xxx;expires="+date2.toGMTString();
+						
+		
+		项目流程:项目发起(ceo,产品经理)-项目分析(竞品分析,产品调研)-项目启动(功能的搭建,业务流程的逻辑,UI设计,项目周期,项目准备框架插件,架构)
+				-项目研发(客户端,前端,后端)-项目测试(QA)-项目上线-项目运维(运营,维护,项目迭代,BUG修复,产品完结)
+				
+		MVVM(M:数据模型;V:VIEW界面显示; VM:view与model进行绑定,事实更新数据模型)
+		模块:代码之间的灵活组合;便于维护,便捷开发,节省开发成本,提升开发效率;
+		
+		
+		类库:   高德地图api
+		插件: swiper轮播图插件      github插件
+		框架:  Bootstrap
+		
+		
+		
+		
+移动端:
+	
+	</script>
+</html>
+
+
+

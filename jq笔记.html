@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="js/jquery-3.1.0.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			jq概念
+				1. $("选择器")  符号后的小括号表示一个选择器，document表示获取到document对象
+				2.  onload事件必须等页面完全加载完毕(包括图片)后才能执行；ready当页面节点加载完毕后就可以执行，可以添加多个，不会覆盖
+					写法 1: $(document).ready(function(){})
+						 2: $(function(){});
+
+			jq节点对象(数组集合)和dom节点对象的相互转换
+				1.把jQuery对象转换为DOM节点
+					方法一：利用数组下标的形式获取
+						var divDom = $("div")[0];
+					方法二：使用get函数获取
+						var divDom=$("div").get(0);
+
+
+				2.把DOM节点转换为jQuery对象
+					// 在DOM节点变量名外包裹上$()
+					var div1=document.getElementsByTagName("div")[0];
+					var $div = $(div1);
+
+			jq选择器    $("");
+				1. id选择器,class选择器,标签选择器,群组选择器,后代选择器,全局选择器
+				2. 后代选择器和 find()方法     $("p span")   $("p").find("span")
+				   子选择器和children()方法    $("p>span")   $("p").children("span")
+				   next选择器和next()方法      $("p+div")    $("p").next("div")
+				   nextAll选择器和nextAll()方法      $("p~div")             $("p").nextAll("div");
+				   prev()方法和prevAll()方法         $("p").prev("div")     $("p").prevAll("div")  //括号内可以不给参数
+				   siblings()获取符合条件的同级元素,不分前后      $("p").siblings("div")    //括号内可以不给参数
+				3. 属性选择器(通过属性来选择)
+					1.$('[属性名]')   2.$('[属性名=属性值]')
+					3.$('[属性名 !=属性值]') 排除当前指定元素
+					4.$('[属性名^= 字符]')以开头来匹配属性值的元素
+					5.$('[属性名$= 字符]')以结尾来匹配属性值的元素
+					6.$('[属性名*= 字符 ]')属性值只要包含当前字符都可以匹配
+				4. 过滤选择器(选择后代)
+					1.$('#div span:first') 2.$('#div span:last')
+					3.$('#div span:even') 索引为偶数             $('#div span:odd') 索引为奇数
+					4.$('#div span:eq(索引)')  		   div下的span
+					5.$('span:gt(index)')      匹配大于指定索引的元素
+						$('span:lt(index)')      匹配小于指定索引的元素
+					5.$('#div span:nth-child(从1开始)')  div下的span
+					6.$('p:empty')      匹配p标签内容为空的元素
+				5.筛选选择器
+					1.$('li').eq(index) 获取索引为index的元素
+					2.$('li').parent()  获取当前元素的父级
+
+			元素内容
+				1.获取元素内容(查)
+					var $div=$(selector).text();//只获取文本的内容,返回文本内容
+					var $div=$(selector).html();//获取包括标签的内容，返回标签的所有内容，包括内部标签
+				2.设置元素内容(增，删，改)
+					var $text=$(selector).text("div文本内容");//返回增加文本的标签对象
+					var $html=$(selector).html("可以包括标签，并且能解析标签");//返回增加文本，标签的标签对象
+				3.获取表单中value值
+					1.$('input:text').val('用户名');  //设置value值
+					2.$('input:text').val()     //获取表单value值
+
+				　　多选框checkbox： $("input:checkbox").attr("checked",'');//不打勾
+				　　$("input:checkbox").attr("checked",true);//打勾
+				　　if($("input:checkbox").attr('checked')=='undefined') //判断是否已经打勾
+
+				　　下拉框select： $("select").attr("value",'sel');//设置value=sel3的项目为当前选中项
+						//注意：对于select标签，它的value等于当前选中的option的文本内容
+						$("select").empty()；//清空下拉框.
+
+
+			元素自身的属性
+				1.获取属性值(查)   通过属性名来获得
+					var $title=$("a").attr("属性名"); //返回获取到的值
+				2.设置属性值(增，改)
+					var $a=$("a").attr("属性名","属性值"); //返回该标签对象
+					var $a=$("a").attr({"属性名1":"属性值1","属性名2":"属性值2"});  //设置多个属性值
+				3.移除属性
+					var $move=$("a").removeAttr("属性名");
+				4.向元素添加class类名(可以添加多个)
+					var $class=$("a").addClass("class类名");
+				5.元素移除class类名(可以删除多个)
+					var $class=$("a").removeClass("class类名");
+				6.判断元素是否有class类名
+					var $class=$("a").hasClass("class类名");
+				7.当元素有这个类名，就删除类名；当元素没有这个类名，添加类名
+					var $class=$("a").toggleClass("class类名");
+				8.prop表单属性操作
+					1.获取表单属性
+					$('input:checkbox').prop('checked');
+					2.改变表单属性
+					$('input:checkbox').prop('checked',!$('input:checkbox').prop('checked'));
+					3.删除表单属性
+					$('input:text').removeProp('属性名');
+					(注意：最好不要用attr去改变表单属性值,prop()可以改变表单属性值,考虑到jq封装性能问题)
+
+			元素样式属性(样式方法只用于查找，最好不要设置，兼容性不好)
+				1.获取css样式
+					var $css=$("p").css("css属性名"); //返回css属性值
+				2.设置css样式(增，改)
+					var $css=$("p").css("css属性名","css属性值"); //返回该对象
+					var $value=$("p").css({"css属性名1":"属性值1","css属性名2":"属性值2"});  //设置多个css属性值,属性名的引号可不加
+				3.获得元素的高度和宽度
+					var $width=$("p").width();
+					var $height=$("p").height();
+				4.获得元素相对于可视窗口的偏移量
+					var $x=$("p").offset(); //为一个对象，里面有2个属性，分别为left，top，一般就是margin值;
+
+				5.获得元素相对于父集定位元素标签的偏移量
+					var $x=$("p").position(); //为一个对象，里面有2个属性，分别为left，top,一般就是定位的left top值
+				6.获得水平滚动条，竖直滚动条的位置
+					element.scrollLeft()     element.scrollTop()
+				7.$(selector).innerWidth() 元素的宽度+padding
+				  $(selector).innerHeight() 元素的高度+padding
+				  $(selector).outerWidth() 元素的宽度+padding+border
+				  $(selector).outerHeight() 元素的高度+padding+border
+
+			节点
+			1.创建节点   （element指要操作的节点对象）
+				var txt1="<p>文本</p>";//方式一
+				var $tex2=$("<p></p>").text("文本");//方式二（jq使用）
+				var  txt3=document.createElement("p");//方式三
+				txt3.innerHTML="文本";
+
+				//创建节点并给节点设置相关jq方法
+				$(body).append($("<button>",{text:'按钮',css:{'background':'red'},click:function(){alert("hehe");}}))
+			2.把新节点插入某个节点
+				//末尾追加
+				a.append(b);  //把b标签对象插入到a对象中结尾
+				b.appendTo(a);  //把b标签对象插入到a对象中结尾
+				  $('.content').append('<b>hello</b>')
+
+				//开头追加
+ 				a.prepend(b);  //把b标签对象插入到a对象中开头
+ 				b.prependTo(a);  //把b标签对象插入到a对象中开头
+
+			3.同级元素插入元素节点
+				a.after(b);  //把b插入到a之后
+				a.before(b); //把b插入到a之前
+ 			4.删除节点
+ 				$(selector).remove();//返回值是被删除的元素，需要标签时，添加返回值就行（方法被删掉了）
+ 				$(selector).detach(); //不会删除绑定在标签上的事件方法
+ 			5.复制节点
+ 				$(selector).clone(); //复制节点对象
+ 				$(selector).clone(true);//复制节点对象，并且复制节点事件
+ 			6.清空节点
+ 				$(selector).empty()  //删除节点的子节点或者内容，
+ 			7.替换节点
+ 				a.replaceWith(b) //用b节点替换a节点
+ 				a.replaceAll(b)  //用a节点替换b节点
+ 			8.包裹节点(给节点包裹父节点)
+ 				$("a").wrap("<div></div>")  //在每一个a标签外包裹一个父节点标签div
+ 				$("a").wrapAll("<div></div>")//在所有的a标签外包裹一个父节点标签div
+ 				$("div").wrapInner("<span></span>")//在div标签内的子内容(或者文本)包裹一个span标签
+
+ 			jq事件
+ 				1.给标签添加事件(通过jq可以给标签绑定多个事件函数)
+	 				$("button").bind("click",function(){});
+					$("button").on("click",function(){});
+
+					$("button").click(function(){});   简写事件
+					//从第一个版本1.0开始就支持,起初只支持单个事件的绑定,1.4开始支持多个
+					//1.8版本之前用bind，从1.8版本后开始使用on;
+				2.解绑事件
+					$("button").unbind("click");
+					$("button").off("click");
+					//注意：使用bind添加的事件用unbind解绑，使用on添加的事件用off解绑；
+				3.复合事件
+					复合事件一：hover()，指鼠标移入移出事件
+					//mouseover-mouseout 与  mouseenter-mouseleave功能相同，表示鼠标移入移出事件
+					//jQuery 1.7 版本前该方法触发 mouseenter 和 mouseleave 事件
+					//jQuery 1.8 版本后该方法触发 mouseover 和 mouseout 事件
+					$("button").hover(function(){console.log("鼠标移入")},function(){console.log("鼠标移出")});
+
+					复合事件二：toggle()方法（点击触发不同事件，第一次函数表示奇数次点击，第二次函数表示偶数次点击）
+					//1.8版本才能使用，之后不支持;
+
+					$("p").css("display","none");
+					$("h3").toggle(function(){$("p").css("display","block");},function(){$("p").css("display","none");});
+
+				4.单次事件(事件只存在一次)
+					$('button').one('click',function(){})
+
+
+				遍历：1.$(selector).size() 或者 $(selector).length    返回jquery匹配元素集合的数量　
+						 2.$(this).index()      返回该jquery对象对应的索引
+						 3.$('li').each(function(){
+						 })
+
+			jq事件对象
+				1.获取事件的对象(在事件触发的函数中传递event参数,该参数为window对象);
+				2.event.type  触发事件的事件名
+				3.event.target  始终指向事件发生时的元素(点谁指向谁，与绑定事件无关)
+				  event.currentTarget   js始终指向事件所绑定的元素,jq如果事件委托,它指向接受委托的标签;同时this指向这个委托对象
+		
+				4.event.pageX 鼠标相对文档的左侧坐标;
+					event.pageY 鼠标相对文档的顶部坐标;
+				5.event.preventDefault()  取消标签的默认事件，如a链接的页面跳转
+					event.stopPropagation()   阻止事件冒泡  (事件冒泡：点击触发莫个节点事件，它的父节点也会触发这个事件)
+					//可以用return false实现阻止事件冒泡，但是一般少用，会对标签的默认行为有影响
+				6.模拟事件：模拟用户触发事件
+				 element.trigger("触发的事件名")在触发拥有默认事件的标签时，也会执行这些默认的事件
+
+				 element.triggerHandler("触发的事件名")在触发有默认事件的标签时，不会触发默认事件(清除默认事件)
+				 	   也可以使用如下方法清除标签默认事件 ，比如清除表单中submit按钮的提交事件，返回false；
+								 $('#form').submit(function(){return false;});
+				7.自定义事件(自己定义一个事件，给事件取个名字，在模拟事件)
+			        	element.trigger("自己取的事件名");
+				8.命名空间(jq中可以给同一标签绑定多个事件，然后在事件名后添加新的名称后缀，方便管理这些事件，在移除事件时，可以通过这些后缀来移除事件   ".后缀" 的方法
+								$('#btn').on('click.a',function(){alert('a');})
+								$('#btn').on('click.b',function(){alert('b');})
+								$('button').click(function(){$('#btn').off('click.a')})
+				9.事件委托(事件本身不处理事件，而是把处理任务委托给父元素或者根元素document,触发函数对象是子元素本身)
+					格式：$('ul').on('click', 'button',function(){};
+						  $('ul').delegate('button','click',function(){};
+								//把ul的事件委托给button去执行,on和delegate的功能一样,解除用undelegate
+			jq动画   (动画来回切换的方法是只执行一次)
+				1.隐藏和显示（修改标签的display属性值）
+					$(selector).hide(speed,callback); 隐藏     $(selector).show(speed,callback); 显示
+					$(selector).toggle();显示和隐藏切换
+					注意：  可选的 speed 参数规定隐藏/显示的速度，可以取以下值："slow"、"fast" 或毫秒。
+							可选的 callback 参数是隐藏或显示完成后所执行的函数名称
+
+				2.淡入淡出
+					$(selector).fadeIn(speed,callback); 淡入显示元素    $(selector).fadeOut(speed,callback); 淡出隐藏元素
+					$(selector).fadeToggle(speed,callback);显示和隐藏切换
+					$(selector).fadeTo(speed,opacity,callback); 允许渐变为给定的不透明度（值介于0与1之间）
+					注意：  可选的 speed 参数规定淡入淡出的速度，可以取以下值："slow"、"fast" 或毫秒。
+							可选的 callback 参数是淡入淡出完成后所执行的函数名称
+
+				3.滑动
+					$(selector).slideDown(speed,callback); 向下滑动至出现
+					$(selector).slideUp(speed,callback); 向上滑动至消失
+					$(selector).slideToggle(speed,callback);  在 slideDown() 与 slideUp() 方法之间进行切换
+
+					可选的 speed 参数规定效果的时长。它可以取以下值："slow"、"fast" 或毫秒
+					可选的 callback 参数是滑动完成后所执行的函数名称
+
+				4.自定义动画animation   可以同时执行多个属性名发生变化（并且属性值可以叠加操作）
+					$(selector).animate({params},speed,callback);
+					必需的 params 参数定义形成动画的 CSS 属性
+					可选的 speed 参数规定效果的时长。它可以取以下值："slow"、"fast" 或毫秒
+					可选的 callback 参数是动画完成后所执行的函数名称。
+
+
+					$(selector).animate({width:"+=100px"},时间);
+					$(selector).animate({width:"500px",height:"500px"},时间,回调函数);  //执行单个动画
+					$(selector).animate({width:'500px'},2000).animate({height:'800px'},2000);//执行多重动画
+
+
+				5.判断元素是否处于动画状态
+					$(element).is(':animated')  该方法返回值是布尔值
+					为了避免动画叠加的混乱效果，判断只有在标签没有执行动画时才会继续添加新动画
+
+					$("button").click(function(){
+						if (! $('#div1').is(':animated')) {$('#div1').animate({width:'+=100px'},3000).animate({height:'+=100px'},3000);}}
+
+				6.  stop() 方法适用于所有 jQuery 效果函数，包括滑动、淡入淡出和自定义动画
+							在动画完成之前，用于停止动画
+
+				7.链式语法
+					如需链接一个动作，您只需简单地把该动作追加到之前的动作上
+					jQuery 会抛掉多余的空格，并当成一行长代码来执行上面的代码行
+
+
+			jq  ajax请求   (ajax要遵守同源策略：其实同源策略就是保证协议、域名、端口3个条件同时满足;)
+				//注意：其中的回调函数是指请求数据结束时才执行的操作
+
+				1.从服务器获取元素的静态数据文件(html或者txt)
+					$('.news').load('data.html?user=1234', function(a, b, c) {
+						console.log(a);  //参数1：a表示请求静态文件的内容
+						console.log(b);	 //参数2：b表示保存请求的状态
+						console.log(c);	 //参数3：c表示执行这次请求的XMLHttpRequest对象
+					});
+				2.$.get()  发起get请求    注意：$.post()与$.post()一样；
+					$.get('data.json',{use:'123',pass:'abc'},function(data){
+						console.log(data); //data表示请求下来的数据
+					});
+					
+					举例子:
+					$.get('http://duif.applinzi.com/leyuan/leyuan_data.php?address=全城',function(rep){
+						var data=JSON.parse(rep);
+						console.log(data);
+					})
+					
+				3.使用ajax方法:  $.ajax(option);
+					//get与post区别: 1.get请求数据快 2.get请求数据量小3.get在域名后拼接参数,没有post安全,post参数写在请求头里面的,在表单提交使用安全;				
+					序列化：序列化表单,把表单中的name属性和value属性拼接为请求参数的样式
+					    text = $('#form').serialize();   data: text  //将text作为参数给data
+					$.ajax({
+						url:'date.json',  //请求接口地址
+						data:'user=123&pass=123',//请求参数
+						type:'GET',//请求方式（可以不写）
+						success:function(data){console.log(data);},  //参数data表示请求成功的数据
+						error: function() {},  //请求失败的回调函数，形参有3个参数，分别是xmlhtprepuest，错误信息，错误对象
+						timeout: 1000   //请求超时时间设置(毫秒)  （可以不写）
+					});
+					
+					//举例子
+					$.ajax({
+						type:'get',
+						dataType:'json',
+						data:{
+							'address':'全城'
+						},
+						url:'http://duif.applinzi.com/leyuan/leyuan_data.php',
+						success:function(rep){
+							console.log(rep);			
+							if(rep.status==1){
+								var html="";
+								for(var i in rep.data){
+									html+="<li> <img src=" +rep.data[i].img +"/> </li>";
+								}
+								$('ul').html(html);
+							}
+						}										
+					})
+					
+				4.$.getJSON()  用于请求载入json数据
+					1.请求json
+						$.getJSON('data.json',function(data){
+							console.log(data);
+						})
+					2.请求jsonp
+						$.getJSON('http://suggest.bang.360.cn/suggest?word='+$that.val()+'&callback=?',function(data){
+							console.log(data)
+						});
+												
+				5.$.ajax(option);  进行跨域操作(从一个服务器访问另一个服务器的内容)
+				//js同源策略：协议，地址，端口都相同
+				//不同源的时候访问会受到安全限制
+				//解决方案：1.让后台进行跨域请求数据(服务器之间访问没有跨域)，把数据传给前端
+				//          2.jsonp（原理：src可以访问网络当中任何地址，任何资源；函数回调，本地写好函数，让服务器调用；script把任何文件当做js文件使用）
+				//			3.ifream
+					1.原生js发起jsonp请求
+						function callback(data){
+							console.log(data);
+						}
+						var _body=document.body;
+						var script=document.createElement("script");
+						script.src="http://duif.applinzi.com/leyuan/test.php?callback=callback";
+						_body.appendChild(script);
+						
+					2.$.ajax 发起jsonp请求
+						<input type="text" id="text" name="" id="" value="" />	
+						<script type="text/javascript">
+						$('#text').on('keyup',function(){
+							var $that = $(this); //函数和对象里面为局部变量，需要复制this指向;
+							$.ajax({
+								type:"get",
+								url:"http://suggest.bang.360.cn/suggest",
+								dataType:'jsonp',
+								jsonpCallback : 'back',
+								data:{
+									'word':$that.val(),
+								}
+							})	
+						})
+						//回调函数写到ajax请求外面				
+						function back(data){
+							console.log(data)
+						}
+				
+			$(document) 的方法：
+				1.$.proxy(函数名，指向的对象)  该方法只是修改指针，函数要执行，需要在方法后面加小括号，并且jq指向标签节点本身，不是标签对象;
+						//当再次执行函数时，指针还是指向window
+				2. $.trim(字符串参数)  去掉字符串前后的空格
+				3. $.type()  精确判断数据类型的函数
+				4. $.inArray('元素'，'数组')   在数组中寻找某个元素，并返回该元素位置
+				5.  var a=$.noConflict();  为防止jq的$指向对象不明确，与其他框架混乱，使用该方法将jq中的$赋给一个变量a
+
+			
+
+
+
+		})
+	</script>
+</head>
+<body>
+
+</body>
+</html>

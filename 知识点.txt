@@ -1,0 +1,131 @@
+浏览器的兼容性问题：
+1.不同浏览器的标签默认margin和padding不同，一般设置重置样式；
+2.块元素浮动后，ie6显示magin比我们实际设置的大；
+3. li设置为浮动，后面的li紧随其后，不能换行； 解决方法：在下一个li上去除浮动 clear：both
+4.在ie7、ie8、ie9出现input输入框和文本输入框不能对齐的现象，解决方法：vertical-align: middle
+5.ie7、ie8、ie9在设置了margin-left和margin-right为auto，发现div并没有居中, 解决方法：设定body，定义text-align:center;
+6.ie7、ie8、ie9对min-height不识别，其他没问题；
+7.几个图片摆在一起，有些浏览器会出现间隙，解决方法：使用浮动float；
+8.css属性渐变色做兼容性
+9.透明度兼容，ie一般用filter，其他浏览器一般用opacity;
+10.设置float的div在ie6下设置的margin会加倍，解决方案：div加样式display：inline；
+
+vue项目中的兼容性问题：
+1.axios.js的post请求：谷歌下直接简写，ie下将xios的写法展开;
+2.在ie下，提示promise未定义，需要引入polyfill.js文件(npm下载可以兼容es6语法的依赖包)
+
+移动端安卓和ios兼容：
+1.苹果手机固定定位会有bug,点击会有白色区域,偶尔会跳屏,尽量不要用fixed定位;
+2.苹果手机拍照时图片会出现旋转，需要封装函数来纠正图片显示的正确角度;
+
+
+
+编码习惯：
+1.尽可能少使用if判断，尽可能多使用三目运算符;
+2.多关注局部变量和全局变量的关系，尽可能将变量提到全局,让变量公有化
+3.使用ajax时候尽可能少调用，减少浏览器请求加载负荷
+4.少去操作dom，有些状态和数据可以用对象全局保存，或者使用浏览器缓冲
+5.命名a+年月日+专题英文，html命名包含'index'，头尾部公共提取,页面meta标签的标题正确填写，
+默认样式、默认字体、页面跳转、文件引入等
+
+
+html5:
+1.用于绘画的 canvas 元素
+2.用于媒介回放的 video 和 audio 元素
+3.对本地离线存储的更好的支持 localstorage,sessionStorage
+4.新的特殊内容元素，比如 article、footer、header、nav、section
+5.新的表单控件，比如 calendar、date、time、email、url、search
+
+css3:
+1.CSS3实现圆角（border-radius），阴影（box-shadow），border-image
+2.对文字加特效（text-shadow、），线性渐变（gradient），旋转（transform）
+3.transform  2d：translate() 从当前位置移动、 rotate() 旋转、scale() 元素尺寸的变化 、skew() 元素翻转给定的角度、matrix组合前面4种;
+                    3d：rotateX() 、rotateY() 翻转
+4.transition 过渡时间效果；
+5.animation 动画
+6.增加了更多的CSS选择器  多背景 rgba 
+7.在CSS3中唯一引入的伪元素是 ::selection.
+8.媒体查询，多栏布局
+
+
+ajax:
+1.工作原理：Ajax的工作原理相当于在用户和服务器之间加了—个中间层(AJAX引擎),使用户操作与服务器响应异步化。
+并不是所有的用户请求都提交给服务器,像—些数据验证和数据处理等都交给Ajax引擎自己来做, 只有确定需要从服务器
+读取新数据时再由Ajax引擎代为向服务器提交请求；Ajax其核心有JavaScript、XMLHTTPRequest、DOM对象组成，
+通过XmlHttpRequest对象来向服务器发异步请求，从服务器获得数据，然后用JavaScript来操作DOM而更新页面。
+这其中最关键的一步就是从服务器获得请求数据；
+2.ajax的readystate请求状态：send未调用 初始化、send调用发送请求、请求完成、解析响应内容、在客户端调用；ajax的status返回状态码：
+200 成功、400错误请求（语法）、403（服务器拒绝提供服务）、500服务器内部报错等；
+3.ajax优缺点：页面无刷新情况下更新数据,交互体验好;异步与服务器通信，不需要打断用户的操作;
+
+http协议
+1.它属于应用层的协议,简单快捷灵活,不会记录传输数据,返回给客户端很快; http协议过程:当客户端像服务器请求一个文件时，
+首先建立一个tcp(传输层的通信协议)，tcp连接好后，客户端像服务器端发送URL，让服务器根据URL去寻找相应的资源,找到文件后从刚刚建立好的
+tcp通道发给客户端，文件发送完毕后拆除tcp连接,如果寻找另一个文件,重复上述过程;
+2.http request请求：请求行（包含数据类型和http版本 get请求参数放在请求行，可以在页面url后面看到）、请求头部（服务器的附加信息）、空行、请求数据（总体,post的请求参数放在这里，可以隐藏，在页面url上面看不到）
+http response响应：状态行、消息报头、空行、响应正文；
+3.get和post: get参数放在请求行里面，传输数据收限制（url长度作了限制）; post放在主体里面，参数安全，传输数据不限制;
+
+
+前端性能优化：
+1.内容优化：减少http请求数、避免重定向、使用缓冲、按需加载、减少dom操作；
+2.cookie优化：减少cookie的体积大小、针对web组件域名无关的cookie；
+3.css优化：将css放在html的头部；避免使用css表达式expression；
+4.js优化：将js文件放在html的底部、删除重复的脚本、将控制台的console.log清空、少使用for循环，优先考虑each循环（效率高）；
+5.图像优化：优化图片大小、css sprites优化图片（精灵图）、优先使用字体图标
+
+
+ES6特性：
+1.let、const:  我们都是用var关键字声明变量。无论声明在何处，都会被视为声明在函数的最顶部(不在函数内即在全局作用域的最顶部）
+只要在{}花括号内的代码块即可以认为 let 和 const 的作用域, const是常量,let是变量，它作用域是在它所在当前代码块，但不会被提升到当前函数的最顶部
+2.箭头函数 ：不需要function关键字来创建函数、省略return关键字、继承当前上下文的this关键字；
+3.object.assign()  : 该方法可以把多个对象合并成一个对象；
+4.   三个点（展开运算符）：可以组装对象和数组；
+5.import 导入模板  export 导出模板；
+6.promise 用同步编程的方式来编写异步代码；
+
+
+webpack:
+1.对webpack理解：webpack是一种模块化的解决方案,grunt/gulp是能够优化前端开发流程的工具,webpack在很多场景下能替代grunt/gulp;
+webpack被看做是模块打包机,它会分析你的项目结构,知道javascript模块及一些浏览器不能直接运行的拓展语言（scss,less,typeScript）,将其转换和打包
+为合适的格式供浏览器使用；
+2.grunt和gulp的工作方式：在一个配置文件中，指明对某些文件进行类似编译，组合，压缩等任务的具体步骤,工具之后可以自动替你完成这些任务;
+webpack把你的项目当成一个整体，通过给定的主文件如index.js，找到你的项目所有依赖文件，使用loaders来处理他们，最后打包成一个浏览器可以识别的javascript文件；
+3.webpack的使用： 
+     一.在终端使用npm init 命令来创建package.json文件(它是一个标准的npm说明文件，包含当前项目的依赖模块,自定义的脚本任务),
+     二.命令行npm install --save-dev webpack来安装webpack依赖包
+     三.webpack三大组件构成：package.json(依赖包说明文件),  webpack.config.js（enter入口、output出口、module处理各种文件的loader，插件如热处理） ,  sever.js（在本地起服务）
+    （注意：
+	1.如果想把html中引用的图片打包过去的话，需要再下载一个loader html-withimg-loader
+	 2.处理es6,7等用babel-loader，这个loader能把es6,7的语言转化为浏览器能识别的es5语法 
+	 3.处理scss，用css-loader和sass-loader，还有style-loader；
+       ）
+
+框架：
+1.sui mobile：基于Framework7开发的ui框架库，非常轻量、精美，我们引入cdn文件就可以使用，能兼容ios6.0+、Android4.0+，非常适合跨平台app;
+组件基本按照ios原生风格去设计，比如下拉刷新、日历、3级联动，在安卓上面有好的效果，
+2.jquery mobile： 用于创建移动端web应用的前端框架，针对于智能手机和平板电脑的网页开发框架,用于主流的手机和平板电脑；
+用极少的 HTML5、CSS3、JavaScript 和 AJAX 脚本代码来完成页面的布局渲染
+
+
+前端架构：  https://blog.csdn.net/qq_33150267/article/details/79213054
+1.前端工程化：
+      一.库/框架选型：主要是解决开发效率
+      二.简单构建优化:选择构建工具,对代码进行压缩，校验语法格式,已页面为单位进行简单资源的合并；
+      三.js/css模块化开发： js模块化开发方案：ADM、CDM、UMD、ES6 Module ;  css模块化：less、sass 
+      四.解决工程问题：大体量：多功能、多页面、多状态、多系统; 
+		大规模：多人团队合作开发；
+		高性能：CDN部署、缓冲控制、缓冲复用、请求合并、按需加载、同步/异步加载、ajax终止访问、预加载；
+     （资源管理：精心规划每个页面的资源加载策略，使得访问哪个页面都能按需加载页面所需的资源,没访问过的无需加载，访问过可以缓冲复用）
+2.前端工程化项目的3大模块：
+       一.Node服务,提供数据代理，路由，和服务器渲染,通过resetful api和后端通信;
+       二.web应用开发，专注于web的交互体验;
+       三.前端运维：包括构建、测试、部署、监控等；
+3.前端工程化
+       一.开发规范：开发部署的目录规范及编码规范;
+       二.模块化开发：针对于js、css、功能和业务为单位组织代码;
+       三.组件化开发：将页面小部件的js、css、html代码片段放在一起开发和维护,组件单位是资源独有的，组件在系统中可复用,通常业务会针对组件化的js部分进行必要的封装，
+	             解决一些常见的组件渲染和交互问题;
+       四.组件仓库：有了组件化，我们可以将经常通用的组件放在公共地方给团队共享,这时我们需要引入一个组件仓库,现在流行的组件库（bower、component）;
+       五.性能优化：解决工程问题保证项目的性能;
+       六.开发工具：构建优化工具、开发调试流程工具（Tapd）、组件库的获取、代码提交工具；

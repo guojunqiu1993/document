@@ -1,0 +1,44 @@
+1.vue中的mvvm模式？ view、model、viewmoel
+
+2.v-show：修改元素的display属性； v-if是直接销毁和重建Dom达到元素显示和隐藏;
+
+3.如何让css只在当前组件中使用？ 将当前组件的<style>修改为<style scoped>
+
+4.<keep-alive></keep-alive>的作用是什么? 
+<keep-alive></keep-alive> 包裹动态组件时，会缓存不活动的组件实例,主要用于保留组件状态或避免重新渲染。
+大白话: 比如有一个列表和一个详情，那么用户就会经常执行打开详情=>返回列表=>打开详情…这样的话列表和详情
+都是一个频率很高的页面，那么就可以对列表组件使用<keep-alive></keep-alive>进行缓存，这样用户每次返回列表
+的时候，都能从缓存中快速渲染，而不是重新渲染（一般结合路由实现，属性keepAlive设置true或false是否需要缓冲）
+
+5.vue使用组件步骤：采用ES6的import..from..引入组件
+
+6.vue使用插件方法: 采用ES6的import..from..引入组件,全局方法vue.use(plugin)使用插件;
+
+7.vue生命周期钩子函数：
+created在模板渲染成html前调用,即通常初始化某些属性值,然后在渲染成视图,
+mounted：在模板渲染成html后调用，通常就是初始化页面后,对html的dom节点进行一些操作;
+computed: 主要对数据渲染后的字段做一些过滤和限制操作;
+
+vue生命周期：创建前后、载入前后、更新前后、销毁前后;
+
+8.vuex的原理和使用方法: 数据单向流动,由于项目大，组件嵌套多，同一个state在数据传递出现很多问题；父子组件数据通过props来通信,但是
+面对一大堆组件之间的通信，我们需要把共有的数据拎出来，在一定的规则管理这些数据;
+一个实例化的vuex.store有state、mutations、getters（数据筛选过滤）、actions三个属性构成,改变state的数据通过mutations方法，它是同步的，如果要写异步，需要在
+actions中,通过commit到mutations中进行state数据的改动
+
+
+9.active-class是哪个组件的属性? vue-router模块的router-view组件
+
+10.嵌套路由怎么定义? 使用路由vueRouter里的参数children配置
+
+11.怎么定义vue-router的动态路由？对path属性加上 /:id
+    怎么获取传过来的动态参数？ 使用router对象的params.id
+
+12.scss怎么引入？ 安装node-sass、sass-loader、style-loader,sass-resource-loader，在build目录找到webpack.base.config.js，在那个extends属性中加一个拓展.scss组件中style标签添加 lang='scss'属性；
+     scss的特点：可以用变量、可以嵌套；
+
+13.vue-router 路由组件： router-link、router-view
+
+14数据双向绑定：ViewModel中的DOM Listeners工具会帮我们监测页面上DOM元素的变化（watcher去监听），如果有变化，则更改Model中的数据；
+
+15.数据在喧嚷完后，因为是异步的，怎么去拿到最终渲染的数据？ this.$nextTick(function(){ console.log('dom已经更新了') });

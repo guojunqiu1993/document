@@ -1,0 +1,1186 @@
+https://public.szsi.gov.cn/hspms/logonDialog.jsp  社保
+
+
+https://www.tapd.cn/20575011/markdown_wikis/view/#1120575011001000654    tapd
+
+http://192.168.2.118:8080  OA填写工时
+账号： ZH060061  密码： g7782926389
+
+向日葵（远程协助工具）
+https://sunlogin.oray.com/zh_CN/download
+
+团省委
+zh_zs_001  123456
+http://49.4.84.79:8080/ams/toPLCLogin/ams.Led.do
+http://localhost:8080/ams/toPLCLogin/ams.Led.do
+
+
+http://localhost:8080/ams/commonLed/zhaoqing  肇庆
+zh_zj_001   123456
+
+http://49.4.84.79:8080/ams/commonLed/zhaoqing  肇庆灰度
+xcbtest 123456
+
+
+zb1.sz 123456
+
+https://www.cnblogs.com/zdz8207/p/svn-relocate-windows.html
+super.futian  123456
+http://localhost:8080/client_lg/
+
+zhcs01 123456   类型为2
+speakadmin 123456 类型为5
+
+
+龙华项目
+http://localhost:8080/client_bzwh_longhua
+账号： admin.gm  123456 管理员
+zhcs.gm 123456 发言人
+http://localhost:8080/client_lg/Mobile/mobile.Login_loginForWechat.action?openid=admin   管理员
+ http://localhost:8080/client_lg/Mobile/mobile.Login_loginForWechat.action?openid=zhcs    发言人
+
+//账号设置下的微信点击切换
+function accountTypeChange(){
+	$(".accountType-select").toggle();
+}
+//账号设置下 微信和微博切换点击  下拉框
+function accountTypeItem(text){
+	if(text=='1'){
+		//点击微信
+		$(".accountType-textCurrent").html('微信');
+		$(".accountType-select").hide();
+	}else if(text=='2'){
+		//点击微博
+		$(".accountType-textCurrent").html('微博');
+		$(".accountType-select").hide();
+	}
+}
+
+//如果没账号  点击添加账号按钮 弹模态框url
+function showAccountUrlAlert(){
+	openOperate('accountUrlWindow');
+}
+//点击取消按钮，关闭模态框
+function accountUrlCancel(){
+	$('#accountUrlWindow').modal('hide'); 826919 dywgw.test
+}
+//模态框url的微信点击切换
+function accountUrlChange(){
+	$(".accountTypeUrlAlert-select").toggle();
+}
+//模态框url 微信和微博切换点击  下拉框
+function accountUrlItem(text){
+	if(text=='1'){
+		//点击微信
+		$(".accountTypeUrl-textCurrent").html('微信');
+		$(".accountTypeUrlAlert-select").hide();
+	}else if(text=='2'){
+		//点击微博
+		$(".accountTypeUrl-textCurrent").html('微博');
+		$(".accountTypeUrlAlert-select").hide();
+	}
+}
+
+
+
+.monitor_list-warper.panel {
+    position: fixed;
+    top: 150px;
+    left: 20px;
+    width: 280px;
+    border-color: #eaeaea;
+}
+
+.sort a{
+	padding:0 3px;
+}
+
+
+//文件夹验证
+var folderFormValidator = $(".folder-form").validate({
+	debug : false, // false表示验证通过后不要自动提交表单
+	onkeyup : false, // 表示关闭按键松开时候监听验证
+	rules : {
+		folderName : {
+			required : true, // 必填字段
+			maxlength:10,
+			minlength:2
+		}		
+	},
+	messages : { // 自定义错误信息，默认为英文，除了在这里配置以为，还可以通过配置文件进行配置
+		folderName : {
+    		required:"预警名称不能为空",
+    		maxlength:"预警名称最大长度为10",
+    		minlength:"预警名称最小长度为2"
+    	}
+	}
+});
+
+
+<a href="javascript:void(0);" class="btns btn-default " ><i class="icon iconfont icon-daochuword"></i> 全部导出Word</a>
+						<a href="javascript:void(0);" class="btns btn-default " ><i class="icon iconfont icon-daochuword"></i> 全部导出Excel</a>
+
+
+
+//取消选中
+var treeObj = $.fn.zTree.getZTreeObj("domain_type_tree");  
+//treeObj.cancelSelectedNode(); 
+treeObj.checkAllNodes(false);
+//增加选中
+treeObj.checkNode(treeNode,true,true);
+
+
+
+人工推荐页面（删除标记）
+<img src="../ams2/common/img/recommend-delete.png" style="width:16px;height:16px;margin-bottom:5px;">
+
+
+舆情监测跳转过来，显示该单元对应的信息（表单信息）
+
+/*获取第一个子节点的数据*/
+function ztreeFirstNodeClick( DOMStr ){
+	var url = window.location.search;
+	if(url){
+		var theRequest = new Object();
+		 if (url.indexOf("?") != -1) {
+		  var str = url.substr(1);
+		  strs = str.split("&");
+		  for(var i = 0; i < strs.length; i ++) {
+		   theRequest[strs[i].split("=")[0]]=(strs[i].split("=")[1]);
+		  }
+		 }
+		 //组织orgId  监测单元id
+		 var orgId=theRequest.organizationid;
+		 var id=theRequest.id;
+		 if(orgId){
+			 var zTree = $.fn.zTree.getZTreeObj(DOMStr);
+				var node = zTree.getNodes();
+			    var nodes = zTree.transformToArray(node);
+			    var indexOrs='';var indexOrsIndex=''; var urlOrgObj={};
+			    $.each(nodes,function(index,value){
+			    	if(value.id==orgId){
+			    		urlOrgObj=value;
+			    	}
+			    })
+			    indexOrs=nodes.indexOf(urlOrgObj);
+			    indexOrsIndex=indexOrs+1;				    
+				var firstNode = zTree.getNodeByTId( DOMStr+"_"+indexOrsIndex );
+				//这里的 20相当于是索引，需要在跳转url上面去拿组织id;
+				console.log(firstNode);
+				zTree.selectNode(firstNode);//选择点  
+				zTree.setting.callback.onClick(null, zTree.setting.treeId, firstNode);//调用事件 
+		 };
+		 if(id){
+			//拿页面url 如果url上面拼接有监测单元id参数，则执行；否则不执行
+			$("#monitor_unit_edit_div").show();
+			$(".unit-edit").hide();
+			$(".unit-none").hide();
+			toUpMonitorUnit(id);
+		 }
+		 
+	}else{
+		var zTree = $.fn.zTree.getZTreeObj(DOMStr);
+		var firstNode = zTree.getNodeByTId( DOMStr+"_1");
+		zTree.selectNode(firstNode);//选择点  
+		zTree.setting.callback.onClick(null, zTree.setting.treeId, firstNode);//调用事件 
+	}
+}
+
+
+
+	//section.section_site=[{'name':'微信','siteid':'1'},{'name':'去去去啊','siteid':'1'},{'name':'急急急急急急','siteid':'1'},{'name':'开发开始开发是开发','siteid':'1'},{'name':'老顾客了改过来酒店管理','siteid':'1'},{'name':'开发商开发可','siteid':'1'},{'name':'可大方公开开关','siteid':'1'},{'name':'快快快快卡覅我','siteid':'1'},{'name':'看看看书多看看','siteid':'1'},{'name':'咖啡咖啡开始开发开放','siteid':'1'},{'name':'分开收付款款新款V型看','siteid':'1'},{'name':'看看是否咳嗽哦哦','siteid':'1'},{'name':'克劳福德立刻付款的反馈反馈','siteid':'1'}];
+	//section.section_site=[{'name':'微信','siteid':'1'},{'name':'去去去啊','siteid':'1'},{'name':'急急急急急急','siteid':'1'},{'name':'开发开始开发是开发','siteid':'1'}];
+
+
+
+beforeDrag:monitorBeforeDrag,
+function monitorBeforeDrag(treeId, treeNodes) {
+    return false;
+}
+
+
+
+
+
+
+option = {
+		        title: {      //标题组件
+		            text: ''
+		        },
+		     /*   tooltip: {
+		        	trigger : "axis",
+		            show: true,
+		            showDelay : 0,
+		            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+		                type : "shadow"        // 默认为直线，可选为：‘line‘ | ‘shadow‘
+		            }
+		        },*/
+		        tooltip : {
+	                trigger: 'item',
+	                
+	                show:true,
+	                enterable:true
+	            },
+			    toolbox: {
+			        feature: {
+			            saveAsImage: {}
+			        },
+			        show:false
+			    },
+		       
+		        xAxis: {       //直角坐标系 grid 中的 x 轴
+		            type: 'category',
+		            boundaryGap: true,
+		            data: data[0],
+		            axisLabel:{
+	                    interval:0,
+		                rotate:60,
+		                margin:10,
+		                textStyle:{
+		                	color:"#111"
+		                },
+	                },
+	                axisLine:{
+		                  lineStyle:{
+		                    color:'#111'
+		                }
+		            }
+		        },
+		        grid: { // 控制图的大小，调整下面这些值就可以，
+		            x: 50,
+		            x2: 20,
+		            y:40,
+		            y2: 80,// y2可以控制 X轴跟Zoom控件之间的间隔，避免以为倾斜后造成 label重叠到zoom上
+		        },
+		        yAxis: {       //直角坐标系 grid 中的 y 轴
+		            type: 'value',
+		            name: '舆情总数',
+		            //值为整数
+		            minInterval:1,
+		            axisLine:{
+		                  lineStyle:{
+		                    color:'#111'
+		                }
+		            },
+		            axisLabel:{
+		                textStyle:{
+		                	color:"#111"
+		                },
+	                },
+//	                splitNumber:1,
+		        },
+		        series: [      //系列列表
+		            {
+		                name: '',
+		                type: 'line',
+		                stack: '总量',
+		                data: [12,343,56,23,45,23,45]
+		            }
+		        ]
+		    };
+
+
+
+<div class="search-contaion">
+						<div class="search-hint">搜索关键词个数不能超过50，关键字长度不能超过300</div>
+						<div class="search-error">
+							<span>输入内容有点多,请减少您的输入!</span>
+							<img src="../ams2/common/img/run.gif" style="width:20px;height:20px;"/>
+						</div>						
+					</div>
+
+
+
+
+//获得cookie值  这里拿组织id 右上角
+function getCookie(key) {
+    var cookieArr = document.cookie.split('; ');
+    for(var i = 0; i < cookieArr.length; i++) {
+        var arr = cookieArr[i].split('=');
+        if(arr[0] === key) {
+            return arr[1];
+        }
+    }
+    return false;
+}
+
+//表单 指定人员 的全选操作
+function allPeopleCheck(){
+	if($("#editMonitorForm [name='allPeople']").is(":checked")){
+		$("#editMonitorForm [name='siglePeople']").prop("checked",true);
+	}else{
+		$("#editMonitorForm [name='siglePeople']").prop("checked",false);
+	}
+}
+
+function siglePeopleCheck(){
+	var check_flag = true;
+	$("#editMonitorForm [name='siglePeople']").each(function(index,item){
+		if(!$(item).is(":checked")){
+			check_flag = false;
+		}
+	});
+	if(check_flag){		
+		$("#editMonitorForm [name='allPeople']").prop("checked",true);
+	}else{
+		$("#editMonitorForm [name='allPeople']").prop("checked",false);
+	}
+}
+
+
+
+
+
+
+var result=[
+  		              {    "CREATED_AT":"2018-04-12 10:25:24.0",
+	  		               "org_type":0,
+	  		               "LERVER":1,
+	  		               "created_at":"2018-04-12 10:25:24.0",
+	  		               "type":2,
+	  		               "parentid":0,
+	  		               "NAME":"广东",
+	  		               "STATUS":1,
+	  		               "expire_date":"2018-05-31 11:30:00.0",
+	  		               "ORG_TYPE":0,
+	  		               "PARENTID":0,
+	  		               "children":[{"name":"广东","id":2,"parentid":417},{"name":"广州天河区","id":69,"parentid":417},{"name":"中山1","id":73,"parentid":417}],
+	  		               "name":"广东",
+	  		               "lerver":1,
+	  		               "ID":417,
+	  		               "id":417,
+	  		               "TYPE":2,
+	  		               "EXPIRE_DATE":"2018-05-31 11:30:00.0",
+	  		               "status":1
+  		               },
+	  		           {   "CREATED_AT":"2018-04-12 10:25:24.0",
+	  		               "org_type":0,
+	  		               "LERVER":1,
+	  		               "created_at":"2018-04-12 10:25:24.0",
+	  		               "type":2,
+	  		               "parentid":0,
+	  		               "NAME":"未知目录",
+	  		               "STATUS":1,
+	  		               "expire_date":"2018-05-31 11:30:00.0",
+	  		               "ORG_TYPE":0,
+	  		               "PARENTID":0,
+	  		               "children":[{"name":"我是测试组织","id":0,"parentid":0}],
+	  		               "name":"未知目录",
+	  		               "lerver":1,
+	  		               "ID":417,
+	  		               "id":417,
+	  		               "TYPE":2,
+	  		               "EXPIRE_DATE":"2018-05-31 11:30:00.0",
+	  		               "status":1
+  		               }
+  		  ];
+
+
+
+
+
+/*$("[name='triggerType']").each(function(index,value){
+		//选中那个单选框
+		if($(value).prop('checked')=='1'){
+			if($(value).val()=='1'){
+				//发现预警
+
+			}else if($(value).val()=='2'){
+				//量级预警
+				
+
+			}else if($(value).val()=='3'){
+				//增量预警
+			
+			}else if($(value).val()=='4'){
+				//趋势预警
+				
+			}
+			
+			
+		}
+	})*/
+
+$(".table_warning-creat").hide();
+$(".table_warning-order").hide();
+
+
+
+
+
+$("#public_dispose_list,#public_handle_list").mCustomScrollbar();
+	
+	$("#public_dispose_list,#public_handle_list").hover(function(){
+		
+	},function(){
+		$(this).mCustomScrollbar("scrollTo","top",{
+			scrollInertia:500
+		});
+	});
+
+
+
+
+/*var result=[
+			{
+				'name':'测试1',
+				'monitor_id':'1',
+				'createtime':'2017-05-01 23:59:59',
+				'num':'1'
+			},
+			{
+				'name':'测试2',
+				'monitor_id':'2',
+				'createtime':'2017-05-02 23:59:59',
+				'num':'2'
+			},
+			{
+				'name':'测试3',
+				'monitor_id':'3',
+				'createtime':'2017-05-03 23:59:59',
+				'num':'3'
+			},
+			{
+				'name':'测试4',
+				'monitor_id':'4',
+				'createtime':'2017-05-04 23:59:59',
+				'num':'4'
+			},
+			{
+				'name':'测试5',
+				'monitor_id':'5',
+				'createtime':'2017-05-05 23:59:59',
+				'num':'5'
+			},
+			{
+				'name':'测试6',
+				'monitor_id':'6',
+				'createtime':'2017-05-06 23:59:59',
+				'num':'6'
+			},
+			{
+				'name':'测试7',
+				'monitor_id':'7',
+				'createtime':'2017-05-07 23:59:59',
+				'num':'7'
+			}
+		]*/
+
+
+
+
+
+
+
+
+搜索页面
+
+1.隐藏右侧的错误提示
+2.input框颜色修改
+3.写定时器过段时间隐藏友好提示
+4.搜索列表时 点击回车右侧的图表显示有问题
+
+
+传播分析:
+http://weiboreach.com/index-main.html
+http://weiboreach.com/main.html#cblj/55e411b9b7c087d7bc31639c
+
+
+
+
+
+https://www.cnblogs.com/chenzhiyu/p/7832040.html   is already locked.锁住后解锁方法
+
+
+ip地址： 192.168.23.1
+
+OA 用户名：guojq 密码：g7782926389
+http://dg.izhonghong.com:8000/oa/index.jsp  一米协同办公系统
+邮箱：guojq@izhonghong.com   密码：Guo7782926389
+
+https://exmail.qq.com/cgi-bin/loginpage （邮箱登录）
+企业qq：2853628177   密码：Guo7782926389
+svn  账号：guojq  密码： guojq002
+http://192.168.2.240:8088/zentao/bug-browse-36.html  （禅道地址）
+
+https://www.tapd.cn/20575011/markdown_wikis/view/#1120575011001000654     tapd  
+
+ps ctrl+shift+delete
+
+3333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
+查看svn的提交记录
+ 
+右键点击K3weibo,点击‘资源历史中显示’查看svn记录
+
+zh_gz_003  182629
+
+asdf 365559
+
+ZHTEST  717127
+test_gd_user  293697
+
+
+
+
+user1.szsw  244038
+
+
+dmsadmin1   275235
+
+
+
+nftest002  123456 (个性化)
+zh_kf_test_001 123456（客户）
+test_wz    103589
+asdf 586146
+ZHTEST       525389
+test_333   235054
+
+test_haizi 555884
+
+
+wxb.sh   247152
+
+$('html ,body').animate({scrollTop: 475}, 300);
+
+ 
+https://cn.vuejs.org/ vue相关api
+
+rightSwitch('system_search');
+						searchSystemUser();
+
+  nftest10 123456 内服人员  
+
+
+win+r 打开cmd
+http://element.eleme.io/#/zh-CN/component/layout   element组件
+https://taylorchen709.github.io/vue-admin/#/login  后台vue项目演示地址
+https://github.com/bailicangdu/vue2-manage
+
+
+登录账号 zh_sz_001 123456
+分析判研-区域分布 (dept_distribute.jsp)  跳转路径 toAreaDistribute/ams.Led.do
+分析判研-媒体分布 (media_distribute.jsp)  跳转路径 toMediaDistribute/ams.Led.do
+
+网信办大屏 5.23号
+http://localhost:8080/wxb_ams/sysLogin/Login.do 登admin 123456
+http://localhost:8080/wxb_ams/ledLogin/Login.do  nftest1 123456
+
+
+
+
+http://localhost:8080/ams/toMonitor2/vms2.PublicOpinionMonitoring.do      ams项目
+http://localhost:8080/ams/sysLogin/Login.do  登录界面
+http://localhost:8080/ams/toLedSearch/ams.Led.do 搜索
+http://localhost:8080/ams/ledLogin/Login.do 大屏登陆地址
+
+http://localhost:8080/ams/toLeadAnalysis/ams.Led.do 网信办新项目  11月23号  （领导分析 页面）  http://192.168.3.206:8080 李世伟ip
+http://localhost:8080/ams/toLeadAnalysis/ams.Led.do?id=437                     http://gallery.echartsjs.com/editor.html?c=xByzFvaw1M 环状图
+
+toPOSituation/ams.Led.do  （整体数据分析）
+toPropagationPath/ams.Led.do（树状图）  toPropagationPath/ams.Led.do?tid=437&mid=4121817087884419
+toEventAnalysis/ams.Led.do?id=437 （传播分析页面）
+toDeptLabel/ams.Led.do  （柱子跳转新页面） 
+toAreaLabel/ams.Led.do   （区域地图信息）
+
+本地locahost环境 内服账号： nftest1  123456
+
+http://218.17.83.12:2195/ams/ledLogin/Login.do  灰度网信办大屏
+账号：sz-test  密码：258369
+zhtest03 1234567
+
+$(".newsItemTop-checkbox:checked").length
+
+http://61.172.249.230:8800/ams  上海环境
+
+
+
+http://61.172.249.228:8890/ams/sysLogin/Login.do 灰度（上面更新了2.4.9代码 导出）
+
+华为云
+http://49.4.50.140:8080/ams/toFocusOn/ams.AmsNavigation.do   nftest 123456    zhtest  123456
+
+
+setTimeout(function(){$(".content-area").click();},1000);
+
+
+内服账号  nftest 123456
+客户账号  zhtest 123456
+recommend_list-warper     monitor_list-warper
+  
+$(".searchResultBox [name='dataAllNum']").val();
+
+
+$(".eventScroll").mCustomScrollbar({
+		theme:"dark",
+		autoHideScrollbar:false
+	});
+
+searchTextHighBlur
+
+http://localhost:8080/ams/toMonitor/ams.AmsIosMobile.do     app ios
+				
+
+http://218.17.83.12:2195/ams/iosMobile/login.html  灰度登陆  账号：nftest 密码：123456
+http://218.17.83.12:2195/ams/sysLogin/Login.do
+   #f9ebd7
+
+http://localhost:8080/client_1/  宝安项目 登录界面
+账号：guanli  密码： 123456  
+账号： test4   密码：Izh@123456                  192.168.3.203 强哥   hongSearch_template
+
+
+$(".table-list-operate .btn").addClass("disabled"); 
+$(".checkAll").prop('checked',false);
+$(".newsItemTop-checkbox").each(function(index,value){
+	$(value).prop('checked',false);
+});
+
+
+http://49.4.70.235:8080/ams/sysLogin/Login.do  华为云
+nftest 123456
+zhtest03 123456
+
+
+灰度ams  http://218.17.83.12:2195/ams/sysLogin/Login.do
+账号: zhtest03  密码: 1234567
+
+
+潮州大屏
+czsw.gdcz   123456
+登录进去改链接  http://218.17.83.12:2195/ams/toChaozhouLed/ams.Led.do
+
+
+
+    
+
+
+禅道 http://192.168.2.240:8088/zentao/company-browse.html
+账号：guojq
+密码：123456
+
+
+
+
+https://github.com/d3/d3/wiki/Gallery  图表案例
+
+
+项目介绍：一.AMS舆情大数据分析系统项目地址：http://218.17.83.17:2195/ams/sysLogin/Login.do账号：sz-test  密码：258369
+          二.DMS宝安项目系统（头部导航改版、日历改版、宣传排行榜）项目地址：http://mng.izhonghong.com:8080/mng_baoan    账号：密码：
+          三.惠东项目的开发（子页面1、子页面2）项目地址：http://diaodu.izhonghong.com:2195/zhlogin/       账号：admin.hdwj   密码：hdwj001qaz
+          四.网信办大屏开发（登陆界面、搜索界面、搜索结果界面）项目地址：http://218.17.83.17:2195/ams/ledLogin/Login.do账号：sz-test  密码：258369
+          五.舆情工作流开发（网络管理、网络宣传、通报绩效、舆情监测）项目地址：http://218.17.83.17:2195/ams/ledLogin/Login.do账号：sz-test  密码：258369
+
+	  
+ams：
+	http://218.17.83.17:2195/ams/  
+	http://218.17.83.17:2195/ams/networkPublicity/ams.Led.do 
+	http://218.17.83.17:2195/ams/ledLogin/Login.do 大屏
+
+	账号：sz-test    密码：wxb123456
+
+宝安：  http://mng.izhonghong.com:8080/mng_baoan
+	账号：baqxc.mngba  密码： Izh@123456
+
+
+惠东：http://diaodu.izhonghong.com:2195/zhlogin/
+      账号：admin.hdwj  密码：hdwj001qaz
+     
+	
+
+
+http://echarts.baidu.com/option.html#xAxis.nameRotate  echarts官网地址
+http://www.jb51.net/article/23526.htm  文字滚动
+http://echarts.baidu.com/echarts2/doc/start.html    echarts例子
+
+
+项目svn  https://svnserver/svn/kms/trunk/led/Code   7月25号
+惠东项目 地址 http://localhost:8080/led/system/screen1.xhtml
+	http://localhost:8080/led/  登录    帐号：all  密码：123456
+
+
+
+gulp    http://www.cnblogs.com/2050/p/4198792.html
+        http://www.cnblogs.com/anywing/p/5311061.html
+	http://www.cnblogs.com/lpdong/p/6211657.html
+
+
+
+cmd相关用法：  
+
+1.进入d盘 D:
+2.进入d盘的某一个文件夹   cd “文件夹名”
+
+用cmd来构建vue的自动化构建工具  vue-cli脚
+1.npm install vue-cli 安装vue-li
+2.vue init webpack yourdemoname 执行这个步骤以后。就会弹出询问 “项目名称..项目描述“等等问题 直接按照提示操作
+3.使用命令:  cd youdemoname 然后执行npm install 就可以了，这个时候你的项目中有多了一个node_modules 目录
+4.使用npm run dev 命令来运行项目 "npm-run-bulid" 来执行发布，会自动生成dist文件
+
+脚手架vue-cli3
+1. npm install -g @vue/cli
+2. vue create project-name
+3.npm run serve 
+
+http://www.cnblogs.com/Worssmagee1002/p/6929950.html  （sublime  让vue出现高亮语法）
+http://blog.csdn.net/lucky_lxg/article/details/66973903  移动端vue项目
+https://segmentfault.com/a/1190000008213141?_ea=1582094
+http://www.cnblogs.com/learnings/p/6293810.html  安卓 ios出现不同警告  忽略 （在vue项目不同设备开发下存在问题）
+https://segmentfault.com/q/1010000008693679  出现import "mint-ui/lib/style.css"失败
+
+
+引入element.ui
+1.修改webpack.config.js 文件（替换就行）
+
+var path = require('path')
+var webpack = require('webpack')
+
+module.exports = {
+  entry: './src/main.js',
+  output: {
+    path: path.resolve(__dirname, './dist'),
+    publicPath: '/dist/',
+    filename: 'build.js'
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader'
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
+        loader: 'file-loader'
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)(\?\S*)?$/,
+        loader: 'file-loader',
+        query: {
+          name: '[name].[ext]?[hash]'
+        }
+      }
+    ]
+  },
+  devServer: {
+    historyApiFallback: true,
+    noInfo: true
+  },
+  devtool: '#eval-source-map'
+}
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports.devtool = '#source-map'
+  // http://vue-loader.vuejs.org/en/workflow/production.html
+  module.exports.plugins = (module.exports.plugins || []).concat([
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    })
+  ])
+}
+
+2.配置main.js文件
+
+import Vue from 'vue'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
+import App from './App.vue'
+
+Vue.use(ElementUI)
+
+new Vue({
+  el: '#app',
+  render: h => h(App)
+})
+
+
+
+
+
+eclipse 怎么打开文件
+1.点击Eclipse界面中的file（文件）下的import（导入）
+2.进入导入界面，选择General下的Exiting Project into Workspace
+3.点击Select root directory：选项行的后面的Browse按钮（就是第一个Browse按钮），选择自己工程文件夹，点击确定
+4.点击完成finish，完成导入工作
+
+
+关于svn的冲突
+1.如果两个人改动的不是同一个位置，直接点击更新就行，将服务器的改动更新到本地，然后点击提交即可
+2.解决二选一的文件冲突： 如果发现改动的是同一个功能点位置，需要舍弃一个； 
+如果舍弃本地文件，点击【覆盖/更新】，
+Eclipse将提示"是否删除本地更改，并替换为资源库中的文件"，直接点击【Yes】即可舍弃本地更改，并更新为资源库中的最新版本;
+舍弃的是资源库中的文件，请右键单击该文件，然后在关联菜单中点击【标记为合并】，然后再点击【提交】即可
+
+
+svn检查代码提交 （设置）
+
+点击 synchronize... 设置各项目代码提交的改动
+
+
+
+
+
+文本数据绑定：<span>Message: {{ msg }}</span> 双大括号
+
+通过使用 v-once 指令，你也能执行一次性地插值，当数据改变时，插值处的内容不会更新。但请留心这会影响到该节点上所有的数据绑定
+<span v-once>This will never change: {{ msg }}</span>
+
+双大括号会将数据解释为纯文本，而非 HTML 。为了输出真正的 HTML ，你需要使用 v-html 指令
+<div v-html="rawHtml"></div>
+
+对于所有的数据绑定， Vue.js 都提供了完全的 JavaScript 表达式支持
+{{ message.split('').reverse().join('') }}
+
+v-if 指令将根据表达式 seen 的值的真假来移除/插入 <p> 元素
+<p v-if="seen">Now you see me</p>
+
+v-bind 指令被用来响应地更新 HTML 属性
+<a v-bind:href="url"></a>  
+<!-- 缩写 -->
+<a :href="url"></a>
+
+v-on 指令，它用于监听 DOM 事件
+<a v-on:click="doSomething">
+<!-- 缩写 -->
+<a @click="doSomething"></a>
+
+v-bind:class 一个对象，以动态地切换 class 
+<div v-bind:class="{ active: isActive }"></div> 表示 classactive 的更新将取决于数据属性 isActive 是否为真值
+
+数组class
+<div v-bind:class="[activeClass, errorClass]">  
+<div v-bind:class="[isActive ? activeClass : '', errorClass]">  三目运算符判断isActive的真假
+data: {
+  activeClass: 'active',
+  errorClass: 'text-danger'
+}
+
+
+条件渲染 
+v-if 主要用于切换多个元素
+<h1 v-if="ok">Yes</h1>
+<h1 v-else>No</h1> 
+
+<template> 元素当做包装元素，并在上面使用 v-if。最终的渲染结果不会包含 <template> 元素
+<template v-if="ok">
+  <h1>Title</h1>
+  <p>Paragraph 1</p>
+  <p>Paragraph 2</p>
+</template>
+
+类似于 v-else，v-else-if 必须紧跟在 v-if 或者 v-else-if 元素之后
+<div v-if="type === 'A'">
+  A
+</div>
+<div v-else-if="type === 'B'">
+  B
+</div>
+<div v-else-if="type === 'C'">
+  C
+</div>
+<div v-else>
+  Not A/B/C
+</div>
+
+
+每次切换时，输入框都将被重新渲染 为了使input没有重复利用，一般用key属性来独立元素的唯一性
+<template v-if="loginType === 'username'">
+  <label>Username</label>
+  <input placeholder="Enter your username" key="username-input">
+</template>
+<template v-else>
+  <label>Email</label>
+
+
+  <input placeholder="Enter your email address" key="email-input">
+</template>
+
+根据条件展示元素的选项是 v-show 指令
+<h1 v-show="ok">Hello!</h1>
+
+
+v-for对数组进行循环操作来渲染 通过index拿到索引
+<ul id="example-2">
+  <li v-for="(item, index) in items">
+    {{ parentMessage }} - {{ index }} - {{ item.message }}
+  </li>
+</ul>
+var example2 = new Vue({
+  el: '#example-2',
+  data: {
+    parentMessage: 'Parent',
+    items: [
+      { message: 'Foo' },
+      { message: 'Bar' }
+    ]
+  }
+})
+
+用带有 v-for 的 <template> 标签来渲染多个元素块
+<ul>
+  <template v-for="item in items">
+    <li>{{ item.msg }}</li>
+    <li class="divider"></li>
+  </template>
+</ul>
+
+v-for 对象迭代
+<div v-for="(value, key, index) in object">
+  {{ index }}. {{ key }} : {{ value }}
+</div>
+new Vue({
+  el: '#repeat-object',
+  data: {
+    object: {
+      FirstName: 'John',
+      LastName: 'Doe',
+      Age: 30
+    }
+  }
+})
+
+v-for 的优先级比 v-if 更高，当你需要仅有的一些项渲染节点时，灵活使用：
+<li v-for="todo in todos" v-if="!todo.isComplete">
+  {{ todo }}
+</li>
+
+<ul v-if="shouldRenderTodos">
+  <li v-for="todo in todos">
+    {{ todo }}
+  </li>
+</ul>
+
+为了方便跟踪每个节点的身份，需要为每项元素提供一个唯一的key属性，相当于每个元素的id
+<div v-for="item in items" :key="item.id">
+  <!-- 内容 -->
+</div>
+
+
+事件处理器
+<div id="example-3">
+  <button v-on:click="say('hi')">Say hi</button>
+  <button v-on:click="say('what')">Say what</button>
+</div>
+new Vue({
+  el: '#example-3',
+  methods: {
+    say: function (message) {
+      alert(message)
+    }
+  }
+})
+
+事件修饰符
+<!-- 阻止单击事件冒泡 -->
+<a v-on:click.stop="doThis"></a>
+<!-- 提交事件不再重载页面 -->
+<form v-on:submit.prevent="onSubmit"></form>
+<!-- 修饰符可以串联  -->
+<a v-on:click.stop.prevent="doThat"></a>
+<!-- 只有修饰符 -->
+<form v-on:submit.prevent></form>
+<!-- 添加事件侦听器时使用事件捕获模式 -->
+<div v-on:click.capture="doThis">...</div>
+<!-- 只当事件在该元素本身（而不是子元素）触发时触发回调 -->
+<div v-on:click.self="doThat">...</div>
+<!-- 点击事件将只会触发一次 -->
+<a v-on:click.once="doThis"></a>
+
+按键修饰符
+全部的按键别名：
+.enter
+.tab
+.delete (捕获 “删除” 和 “退格” 键)
+.esc
+.space
+.up
+.down
+.left
+.right
+
+<input v-on:keyup.enter="submit">
+<input v-on:keyup.13="submit"> 当code为13时，调用submit方法
+可以通过全局 config.keyCodes 对象自定义按键修饰符别名  Vue.config.keyCodes.f1 = 112
+
+v-model数据双向绑定
+1.文本
+<input v-model="message" placeholder="edit me">
+<p>Message is: {{ message }}</p>
+2.多文本框
+<span>Multiline message is:</span>
+<p style="white-space: pre">{{ message }}</p>
+<textarea v-model="message" placeholder="add multiple lines"></textarea>
+3.多选按钮
+<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+<label for="jack">Jack</label>
+<input type="checkbox" id="john" value="John" v-model="checkedNames">
+<label for="john">John</label>
+<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+<label for="mike">Mike</label>
+<br>
+<span>Checked names: {{ checkedNames }}</span>
+new Vue({
+  el: '...',
+  data: {
+    checkedNames: []
+  }
+})
+4.单选按钮
+<div id="example-4">
+  <input type="radio" id="one" value="One" v-model="picked">
+  <label for="one">One</label>
+  <br>
+  <input type="radio" id="two" value="Two" v-model="picked">
+  <label for="two">Two</label>
+  <br>
+  <span>Picked: {{ picked }}</span>
+</div>
+new Vue({
+  el: '#example-4',
+  data: {
+    picked: ''
+  }
+})
+5.选择列表
+单选列表
+<div id="example-5">
+  <select v-model="selected">
+    <option disabled value="">请选择</option>
+    <option>A</option>
+    <option>B</option>
+    <option>C</option>
+  </select>
+  <span>Selected: {{ selected }}</span>
+</div>
+new Vue({
+  el: '#example-5',
+  data: {
+    selected: null
+  }
+})
+
+多选列表
+<div id="example-6">
+  <select v-model="selected" multiple style="width: 50px">
+    <option>A</option>
+    <option>B</option>
+    <option>C</option>
+  </select>
+  <br>
+  <span>Selected: {{ selected }}</span>
+</div>
+new Vue({
+  el: '#example-6',
+  data: {
+    selected: []
+  }
+})
+
+6.动态选项
+<select v-model="selected">
+  <option v-for="option in options" v-bind:value="option.value">
+    {{ option.text }}
+  </option>
+</select>
+<span>Selected: {{ selected }}</span>
+new Vue({
+  el: '...',
+  data: {
+    selected: 'A',
+    options: [
+      { text: 'One', value: 'A' },
+      { text: 'Two', value: 'B' },
+      { text: 'Three', value: 'C' }
+    ]
+  }
+})
+
+7.修饰符
+  <input v-model.lazy="msg" >   在change事件中同步
+  <input v-model.number="age" type="number">  自动将用户的输入值转为 Number 类型
+  <input v-model.trim="msg">   自动过滤用户输入的首尾空格
+
+服务ajax
+ 1.get请求
+
+ new Vue({    
+        el:"#app",  
+        methods:{  
+             get:function(){  
+                this.$http.get('get.php',{  
+                    a:10,  
+                    b:1  
+                  }).then(function(res){  
+                    alert(res.data);           
+                  },function(res){  
+                    alert(res.status)  
+                  });  
+              }  
+          }  
+                  
+     })
+  2.post 请求
+    
+   new Vue({            
+       el:"#app",  
+       methods:{  
+           get:function(){  
+               this.$http.post('post.php',{  
+                   a:2,  
+                   b:3  
+            },{  
+                 emulateJSON:true  
+              }).then(function(res){  
+                 alert(res.data);              
+               },function(res){  
+                 alert(res.status)  
+               });  
+              }  
+          }           
+    })
+
+8.生命周期  create 和 mounted
+   beforecreated： el和data并未初始化
+   created： 完成了data的初始化 ， el没有
+   beforeMount： 完成了 el和data的初始化，这时候还是虚拟Dom，数据没有渲染
+   mounted：完成挂载，把数据渲染完成到元素上
+
+
+ES6 相关特性
+ 
+1.let 为js新增加了块级作用域，用它所声明的变量，只在let命令所在的代码块内有效
+2.const也用来声明变量，但是声明的是常量。一旦声明，常量的值就不能改变
+3.箭头指向  
+    function(i){return i+1;}
+    (i) => i+1
+  箭头函数: 箭头函数根本没有自己的this，它的this是继承外面的，内部的this就是外部代码的this
+    class Animal {
+   	 constructor(){
+        	this.type = 'animal'
+    	}
+    	says(say){
+        	setTimeout( () => {
+            	console.log(this.type + ' says ' + say)
+       		 }, 1000)
+   	 }
+	}
+ 	var animal = new Animal()
+ 	animal.says('hi')  //animal says hi
+4.Object.assign 合并对象带一个对象上
+
+

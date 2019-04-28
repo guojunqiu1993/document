@@ -1,0 +1,418 @@
+
+<html>
+	<head>
+		<title></title>
+		<meta charset="UTF-8"/>
+	</head>
+	<body>
+		特殊字符
+			&nbsp; 空格  &lt;小于    &gt;大于    &quot;引号  &copy;版权符号
+		字体
+ 			加粗<b></b> <strong></strong>      斜体<i></i>   <em></em>
+
+ 			<img src="路径" alt="路径有问题，则会显示文字" title="鼠标放上去会显示标题">
+
+			<a href="路径" target="_self当前  _blank新窗口"></a>
+ 			<a name="marker">做标记</a>  <a href="#marker">挑转到锚链接标记</a>
+
+ 			<table width="" border="默认为0" bgcolor="背景颜色" bordercolor="" cellspacing="空格间的距离" cellpadding="字到单元格的距离">
+ 				<tr height="" align="left center right" valign="top middle bottom" bgcolor="背景颜色">
+ 					<td align="left center right" valign="top middle bottom" colspan="单元格水平合并" rowspan="单元格竖直合并"></td>
+ 				</tr>
+ 			</table>
+
+ 			<caption>表格标题</caption> <thead>表格 头</thead> <tbody>表格重要部分</tbody> <tfoot>表格 尾</tfoot> 
+
+ 			表格样式	border-spacing（单元格距离）    border-collapse （边框） ：seperate（分开）/ collapse(合并)  
+ 		  			table-layout:auto(单元格由内容决定)  /  fixed（单元格大小一样，多的内容溢出）
+ 		 			empty-cells :show显示 / hide隐藏(单元格) 
+
+
+
+
+
+		选择器 ：  
+			1  标签选择器   2 全局选择器*  3 class选择器   4 id选择器     5 交集选择器(不空格)  6  并集选择器(,)  7  子选择器(>)  8 后代选择器(空格)
+		    9 兄弟选择器 E~F(E后面所有的F元素会变样式)   相邻选择器 E+F （与E相邻的F会变样式）    	        
+		    10 伪类选择器 a:link{} 初始状态; a:visited{} 链接被访问的状态; a:hover{} 鼠标悬浮时状态; a:active{} 鼠标点击链接时的状态;
+		    	(注意：只有hover、active可以对所有标签起作用，link、visited只对a链接起作用)
+			11 属性选择器		
+				[attribute]	用于选取带有指定属性的元素
+				[attribute=value]	用于选取带有指定属性和值的元素
+				[attribute~=value]	用于选取属性值中包含指定词汇的元素
+				[attribute|=value]	用于选取带有以指定值开头的属性值的元素，该值必须是整个单词
+				[attribute^=value]	匹配属性值以指定值开头的每个元素
+				[attribute$=value]	匹配属性值以指定值结尾的每个元素
+				[attribute*=value]	匹配属性值中包含指定值子串的每个元素
+			12 结构伪类选择器
+		  		1.否定伪类选择器 E:not(选中的标签) 对某个结构元素使用样式，但想排除这个结构元素下的子结构元素，就是用not样式
+		        2.目标伪类选择器 E:target 某个target元素指定样式，该样式只在用户点击了页面中的链接，并且跳转到target元素后生效
+						    	 :root 相当于body{} ，HTML页面中就是指包含着整个页面的<html>部分
+						    	E:empty选择匹配E的元素，该元素不包含有子节点及内容  指定当元素内容为空白时使用的样式
+				3.
+					:first-child选择某个元素的第一个子元素；
+					:last-child选择某个元素的最后一个子元素；
+					:nth-child()选择父级元素的子元素；
+					:nth-of-type()选择父级元素下指定的同类子元素；   :nth-of-type(odd) 奇数       :nth-of-type(even) 偶数
+					:first-of-type选择一个上级元素下的第一个同类子元素；
+					:last-of-type选择一个上级元素的最后一个同类子元素；
+					:only-child选择的元素是它的父元素的唯一一个了元素；
+					:only-of-type选择一个元素是它的上级元素的唯一一个相同类型的子元素
+					:first-line  选中当前文本第一行
+					 ：first-letter  选中第一个文字
+					
+					注意：nth-child()表示选择父级中的任意子元素；nth-of-type表示选择父级中的相同子元素；
+					
+				4.  向标签内追加伪类选择元素：有一个必要的属性content;     :before表示元素内之前的标签           :after表示元素内之后的标签
+		
+				5.  UI伪类选择器注册表单     
+					 	E:enabled 选择匹配所有可用的元素 
+				  		E:disabled 选择匹配所有不可用的元素
+				  		E:checked 选择匹配所有被选中的元素
+						E：focus  触发焦点时选中
+
+		display：none（隐藏元素在页面中不占位）  /   visibility：hiddle（隐藏元素在页面占位）、visible显示
+
+		无序列表（默认实心小圆圈）
+		list-style：url() inside;  简写
+			list-style-type:none/disc/circle/square;  list-style-image:url(); list-style-position:inside/outside(标签的位置，默认在外面)  
+
+		背景图片（默认在容器的左上方）
+		background:url() no-repeat  left center;     简写
+			 background-color:颜色;   background-image:url();    background-repeat(平铺):repeat-x,repeat-y,repeat,no-repeat;
+			 background-attachment：scroll(随滚动条滚动 默认)，fixed(固定，一直出现在可视窗口); 
+			 background-position:水平 竖直;或者用像素表示      水平（left center right） 竖直（top center bottom）
+		background-size:宽度    高度;
+		background-origin:规定背景图的起始点位置
+			属性值	border-box：从border的零点开始平铺
+					padding-box:从padding的零点开始平铺
+					content-box：从content的零点开始平铺
+		background-clip:规定剪切背景图的位置
+			属性值	border-box：保留所有内容区的背景图
+				 	padding-box：保留padding以内其余剪掉
+					content-box：保留content以内其余剪掉					
+		线性渐变：从一个点到另一个点
+		background: linear-gradient(to top, red,green);   从下到上由红色到绿色
+		
+		径向渐变：从一个起始点向外扩散
+		background: radial-gradient(at top left , red, blue);   从左上开始扩散由红到蓝
+
+
+		文本
+		font：倾斜样式 粗细 大小 字体类型;
+		      font-style:normal正常,italic倾斜小，oblique倾斜大;   font-weight:bold粗，bolder更粗，lighter细，normal正常;
+		      font-size:px像素, em字符大小(1em=16px) ,pt点（9pt=12px）; font-family:"宋体" "黑体" "微软雅黑";
+
+		text-align(文本):left，center，right，justify（两端对齐）;
+		vertical align(文本垂直对齐):top,middle,bottom; ——它适用行内块，并且是相互的，需要图片与文字都打成行内块，给垂直居中样式.
+		line-height(行高与容器高一样，文本垂直居中)
+
+		text-decoration：none，underline下划线，overline上划线,line-throught删除线,blink闪烁;
+		text-indent（文本首行缩进）   letter-spacing（英文字母之间 汉字之间的距离）  word-spacing （英文单词之间距离）
+		text-tansform:capitalise单词首字母大写，uppercase所有单词大写，lowercase所有单词小写
+		word-wrap（自动换行）：normal，break-word（长单词或url地址内部换行）
+		white-space(空白)：pre（保留原来的文本格式显示，文本超出边界不换行）
+						 pre-wrap（保留原来的文本格式显示，文本超出边界换行）
+						 pre-line（不保留空白距离，正常换行）
+						 nowrap：强制文本在同一行显示，合并多余的空白，遇到br才会换行;
+		text-shadow（文字阴影）：h-shadow(水平)  h-shadow(竖直)  blur（模糊距离，可选）  color（阴影效果颜色，可选）
+		box-shadow（边框阴影）：h-shadow(水平) h-shadow(竖直) blur（模糊距离，可选） color（阴影效果颜色，可选）inset 将外部放在内部，可选
+			举例子：	box-shadow:5px 5px 3px rgba(255,0,0,0.5);
+				    text-shadow:3px 3px 3px rgba(255,0,0,0.5);
+
+
+
+
+		overflow（溢出）：visible内容不会裁剪，会呈现在元素框以外; hidden内容会裁剪，裁剪内容不可见;
+						  scroll：不管内容是否溢出，都会出现滚动条来显示全部内容；auto：只有内容溢出才会出现滚动条，不溢出不会出现滚动条
+		(opacity:0 与 visibility：hidden 标签隐藏会占位 ;  overflow: hidden 与 display:none 标签隐藏不会占位)
+		
+		text-overflow(必须与overflow一起用):ellisis 省略号显示被裁剪的内容;    string使用给定的字符显示被裁剪的内容；
+		注意：text-overflow必须与overflow：hidden和一起用white-space：nowrap一起使用；
+
+
+		边框    border：solid 1px #666; (简写，也可以给每个边款定义)
+		border-style：solid实线，dashaed虚线，dotted点划线，double双重线;none;
+		border-radius:上左，上右，下右，下左；（4个值）    border-radius:50%  (把一个块级元素变成一个圆)
+		border-left-color（做三角形，给元素边框大小，改变边框颜色）    transparent透明
+		
+		border-image-source:图片地址
+		border-image-slice:图片切片
+		border-image-width:图片宽度
+		border-image-outset:图片外凸,向外扩散
+		border-image-repeat:图片重复 (属性值 ： stretch 默认为拉伸   repeat 图片平铺    round图片环绕)
+		
+		块级元素缩放
+		resize:缩放  必须加上overflow: auto
+			属性值
+			both:宽高全部缩放
+			vertical竖向
+			horizontal 横向
+		
+		h5新标签：<header></header>  <nav></nav>  <footer></footer>   <section>定义文档中的某个区域,相当于div</section> 
+		
+				<figure>
+					<img src="img/0.jpg"/>
+					<figcaption>
+						这里写文字
+					</figcaption>
+				</figure>
+
+				表单标签：
+					<!--年月日-->
+					<input type="date" /> 
+					<!--时间-->
+					<input type="time" />
+					<!--年月日 ，时间-->
+					<input type="datetime-local" />
+					<!--取色器-->
+					<input type="color" id="color"/>
+					<button onclick='colorFn()'>点击显示颜色</button>
+					<br />
+				
+					<!--数字,有min、max的属性-->
+					<input type="number" max="10" min="0"/> 
+					<br />
+					
+					<!--进度条   value代表进度条进度-->
+					<input type="range" min="0" max="100" value="30"/>
+					
+					<!--优化搜索-->
+					<input type="search" />
+					
+					<!--电话-->
+					<input type="tel" />
+		
+					<!--url-->
+					<!--对于input标签，如果需要记录历史记录，可以使用属性autocomplete来设置，属性值为on或者off-->
+					<form>
+						<input type="url" autocomplete="on"/>
+						<input type="submit" />
+					</form>
+					
+
+		表单控件   		
+		 <form name="规定表单的名称" action="提交表单url" method="get/post 提交方式" enctype="在发送表单之前编译可能的值" target="_self/_blank/_parent/_top" 				autocomplete="on/off  是否启动表单记录" novalidate="novalidate 不验证表单">
+
+		  1.文本框	  <input type="text" value="输给后台人员的信息" placeholder="提示信息"/>
+		
+		  2.密码框    <input type="password" value="输给后台人员的信息" placeholder="提示信息"/>
+		
+		  3.普通按钮  <input type="buttom" value="按钮内容" onclick="javascript:alert ('呵呵')"/>
+		
+		  4.提交按钮  <input type="submit" value="提交按钮内容"/>
+		
+		  5.重置按钮  <input type="reset" value="重置"/>
+		
+		  6.单选框(圆圈框)    <input type="radio" name="单选内容的类型" value="输给后台人员的信息" checked="checked"/>    默认选中
+		  			   		  <input type="radio" name="单选内容的类型" value="输给后台人员的信息"/>
+		
+		  7.多选框(方框)      <input type="checkbox" name="单选内容的类型" value="输给后台人员的信息" checked="checked"/>
+		  					  <input type="checkbox" name="单选内容的类型" value="输给后台人员的信息"/>
+		  					  <input type="checkbox" name="单选内容的类型" value="输给后台人员的信息"/>
+		
+		  8.下拉框           <select>
+						<option selected="selected"></option>    默认选中
+						<option></option>	
+						<option></option>
+				 	</select>
+		
+		  9.多行文本框(默认保留文本内容格式)      <textarea readonly="readonly"> </textarea>  只能读文本，可以copy文本
+		  								<textarea disabled="disabled"> </textarea>  不可用文本，阴影显示，不可以copy文本
+		
+		表单高级：
+			1.   <fieldset> </fieldset>   它是块级元素，相当于一个方框，对表单控件进行分组
+			2.   <legend> </legend>      必须放在fieldset的子一集，对表单控件进行分组后取名字
+			3.   上传文件域     <input type="file"/> 会出现浏览按钮和文字，相当于从电脑中找文件去上传
+				 图像域       <input type="" src="" />   相当于图像按钮		
+		    4.    <label for="别人的id值"> </label>    可以做点击弹出对应的菜单内容
+
+
+		定位
+		1.position:relative;
+			设置元素相对定位，相对定位的元素还处于标准文档流中，他的偏移是以没有定位之前的位置为参照的
+			不管元素偏移到何处，相对定位的元素的占位始终为没有定位时的占位
+			设置相对定位的元素比标准文档流中的元素层级高一下，若有重叠，相对定位的元素显示在上层
+		
+		2.position:absolute;设置元素绝对定位
+			1、设置了绝对定位的元素将脱离标准文档流，在标准文档流中不占位，绝对定位的元素层级比标准文档流中的元素层级高
+			2、设置了绝对定位的元素将会变成一个块级元素，没有固定的宽度，最好设置一个宽度，位置不可控，需要用left   top   bottom   right设置元素的偏移量进行定位
+			3、绝对定位的元素偏移的参照物（基准）是祖先元素中设置了定位（position:relative\absolute\fixed)的并且离绝对定位元素最近的那个元素，
+			      如果祖先元素中没有元素定位，这时候，绝对定位的元素将会以body为基准进行偏移
+		
+		3.position:static的元素跟原来没有区别，设置的偏移量也不会起作用;
+		
+		4.position:fixed   固定定位
+		（1）元素框的表现类似于将 position 设置为 absolute，不过其包含块是视窗本身。
+		（2）固定定位是相当于“当前窗口”来进行的定位。
+		（3）固定定位元素不再占空间，层级要高于普通元素，跟“浮动”很像。
+		（4）固定定位元素，是一个“块元素”，换句话说，行内元素使用fixed定位，将转成“块元素”
+		
+		z-index  取整数，它代表元素的层叠顺序，大的在上层。
+
+
+	浮动·
+		1、浮动元素脱离标准文档流，处于浮动流中
+		2、在同一个盒子中，如果一个元素浮动了，那么他后边的元素将会占据浮动元	素之前的位置，但是标准文档流中的元素的内容不会被浮动元素遮盖，会呈现环绕效果
+		3、浮动了的元素没有固定宽度，不可控，所以要设置固定宽
+		4、如果浮动元素的前一个元素是处于标准文档流中，则此浮动元素将会在他前	一个元素的下一行开始浮动
+		5、父级盒子中的子元素如果开始浮动，父级盒子将会发生塌陷，若全部子元素都浮动，则父级盒子内容高度为0
+		6、任何类型的元素浮动了之后将呈现成块状
+	
+	
+		只要给元素设置了浮动，元素的父级元素肯定会发生倒塌，所以乣扩展父级盒子的高度，方式有四种：
+		1、给父级元素一个合适的高度
+		2、在父级盒子中所有浮动元素的后面加一个DIV,设置clear:both;
+		3、使用伪元素选择器在父级元素中加子元素   	父级元素:after{content:"";display:block; clear:both;}
+		4、给父级元素加overflow:hidden;  或者overflow:auto;
+
+		清除浮动给父级元素内的末尾标签添加样式： 
+				.content:after{
+					content:'';
+					clear:both;
+					height:0px;
+					display:block;
+					overflow:hidden;
+					zoom：1;  <!--火狐浏览器-->
+				}
+
+	五大浏览器内核
+	（1）Trident   （MSHTML）     （三叉戟；三叉线；三齿鱼叉） 
+	（2）Gecko      （壁虎） 
+	（3）Presto      （ 迅速的） 
+	（4）Webkit    （Safari内核,Chrome内核原型,它是苹果公司自己的内核，也是苹果的Safari浏览器使用的内核）
+	（5）Blink         (由Google和Opera Software开发的浏览器排版引擎)
+
+	说明：如果想要一些浏览器能够兼容，需要加一些前缀
+	Mozilla内核需要加上-moz-，
+	Webkit内核需要加上-webkit-，
+	Presto内核 -o-
+	IE8 需要加上-ms
+
+
+
+	 CSS Bug、CSS Hack和Filter
+			CSS Bug:CSS样式在各浏览器中解析不一致的情况，或者说CSS样式在浏览器中不能正确显示的问题称为CSS bug.
+			CSS Hack: CSS中，Hack是指一种兼容CSS在不同浏览器中正确显示的技巧方法，因为它们都属于个人对CSS代码的非官方的修改，或非官方的补丁
+			Filter:表示过滤器的意思，它是一种对特定的浏览器或浏览器组显示或隐藏规则或声明的方法。本质上讲，Filter是一种用来过滤不同浏览器的Hack类型。			 
+			设计CSS Hack和 Filter通常有两种方法：
+				（1）一种是利用浏览器自身的Bug，来隐藏或显示样式或声明；
+				（2）另一种是利用浏览器对CSS支持的不完善，如对某些规则或语法还没有形成支持，来隐藏或显示样式。	
+	
+	CSS Bug
+		1.给子元素设置margin-top,发现父元素会和子元素一起移动，需要给父元素添加样式padding-top：0.1px或者border-top：solid 1px;或者给父集margin-top。
+		2.图片下方有空隙bug,解决方案：img{vertical-align:middle/top/bottom;} img{display:block;} 块级元素是方方正正，不会出现空隙，
+		3.解决图片及文字自左向右的空隙，方案：给父集一个fond-size：0或者 给父集word space；空隙值的负数 或者把他们放在同一行显示；
+		4.只有ie浏览器 ie6的图片做链接会出现边框，解决方案：img{border：none；}
+		5.图片鼠标滑过边框显示一半问题（给图片加超链接时，链接加边框，图片无边框）
+		解决办法：IE6中：给a标签添加边框，并且把a标签打成块级元素。a:hover时加边框就不会出现一半的问题了
+		5.input与img垂直方向不对齐问题     解决办法：img,input{vertical-align:middle}
+		6. opacity 定义元素的不透明度  
+					解决办法：1.filter：alpha（opacity=80）；/*ie支持该属性*/
+							 2.opacity：0.8；/*支持css3的浏览器*/
+		7.游标手指cursor:pointer 可以同时在 IE FF 中显示游标手指状， hand 仅 IE 可以
+		8.高度自适应问题（最小高度）
+		 	IE6不认识min-height，IE6里的内容会自动撑开 
+			解决办法：div{ height:auto !important; height:200px; min-height:200px;}
+		9. a标签hover不适用于所有标签
+			产生条件：IE6浏览器中hover只支持a标签的使用，不支持其它标签使用；
+			解决办法：合理用a标签嵌套其他行内标签，给a:hover div样式解决 或者用javascript模拟a的hover效果；
+		10.一行文本垂直居中问题
+			vertical-align: middle;/*不管用*/
+			解决办法：height:30px;line-height:30px;
+	 
+	浏览器Bug
+		1.不同浏览器的元素padding margin不一样，解决办法：*{padding:0;margin:0;}
+		2.行内,行内块,块元素左浮，竖向的margin值为他们的两个值之和
+		其中，IE6中，第一个元素左浮时，第二个元素不会去占它的位置，而是并向排列；  解决方法：display：inline；
+		两个块元素，竖向的margin值不增加，会重叠，其间距为最大margin值
+		3.margin:0 auto,对IE6不起作用   解决办法：给body{text-align:center}
+	
+	
+	IE条件注释Hack 
+	（1）  <!--[if IE 7]>
+			<link rel="stylesheet" type="text/css" href="ie7.css" /> 
+	              <style type=“text”></style>
+		<![endif]-->
+	
+	（2） <!--[if IE]> 
+			<h2>我是IE中看到</h2>
+		<![endif]-->
+	
+		条件注释的基本结构和HTML的注释(<!-- -->)是一样的。因此IE以外的浏览器将会把它们看作是普通的注释而完全忽略它们
+	
+	选择器Hack
+	（1）*html #demo { color:red;}            /*  仅IE6 识别 */
+	（2）*+html #demo { color:red;}         /*  仅IE7 识别 */
+	（3）body:nth-of-type(1) #demo { color:red;}     /* IE9+、FF3.5+、Chrome、Safari、Opera 可以识别 */
+	（4）head:first-child+body #demo { color:red; }     /* IE7+、FF、Chrome、Safari、Opera 可以识别 */
+	（5）:root #demo { color:red\9; } :     /* IE9识别 */
+	
+	 CSS属性级Hack 
+	（1）color:red;                 /* 所有浏览器可识别*/
+	（2）_color:red;               /*  IE6 识别 */
+	（3）*color:red;               /*  IE6、IE7 识别 */
+	（4）+color:red;              /*  IE6、IE7 识别 */
+	（5）*+color:red;              /*  IE6、IE7 识别 */
+	（6）[color:red;                /*  IE6、IE7 识别 */
+	（7）color:red\9;                 /* IE6、IE7、IE8、IE9+ 识别 */
+	（8）color:red\0;                  /* IE8、IE9 识别*/
+	（9）color:red\9\0;                /* IE9识别 */
+	（10）color:red \0;                /* IE9识别 */
+	（11）color:red!important;          /* IE6 不识别!important*/	
+	
+	
+	不同浏览器的hack引入：
+	
+	@media all and (-webkit-min-device-pixel-ratio:10000), not all and (
+	-webkit-min-device-pixel-ratio:0) { .element{color:#336699;}}  /*opera*/
+	@-moz-document url-prefix(){ .element{color:#f1f1f1;}} /*Firefox*/
+	
+	
+	关键字
+	<meta name="keywords" content=""/>keywords用来告诉搜索引擎你网页的关键字是什么
+	
+	<meta name="description" content=""/>
+	description用来告诉搜索引擎你的网站主要内容。
+	
+	
+	网站优化：
+	
+	1.采用纯文本链接
+		最好是别用Flash动画和图片设置链接，因为各个搜索引擎程序中
+		都有一个会自动“爬行”于互联网上的智能机器人，程序搜索引擎无法识别Flash上的文字.
+	
+	2.网站地图
+		对于一个栏目众多的网站，可以设网站地图，它可以帮助访客最快速度找到所需的内容；可以给
+		搜索引擎提供一份自己网站的“鸟瞰图”，方便搜索机器人依次索引整个网站。
+	
+	3.图片alt属性
+		图片alt属性的作用是当图片无法显示时以文字作为替代显示出来，而对于SEO来说，它可以令搜索
+		引擎有机会索引你网站上的图片，对于一些确实没什么意义的图片，最好也不要省略alt，而应该留空，即 alt=""。
+	
+	4.友情链接  
+		如何提供我们自己的pr值，方法为交换链接！应该找一些和自己网站内容相近，且较为优秀的网站，
+		但不要疯狂的交换链接，如果你的首页上一下子多了几百个友情链接，Google不但不会提升你的pr，有可能
+		认为你作弊，从而把该网站从自己的数据库中删除.
+	
+	5.静态页面与动态页面：
+		动态页面（与后台数据库有数据交互）自动生成对应的静态页面，既能便于搜索引擎收录，也可以降低网站服务器、数据库负担；
+		网站流量决定一切，即便是一个全部采用动态页面的网站，但因为很受欢迎访客不断，那么它还是会被搜索引擎青睐，还是会出现
+		在搜索结果的前列。
+	
+	6避免大“体积”的页面
+		有经验标明，搜索引擎不喜欢索引大体积的页面，即一个页面代码部分的体积不要太大，控制在100kb内为佳.
+	
+	7合理的代码结构（简化代码，易修改）
+		搜索引擎喜欢格式清晰，结构分明的页面，理论上XML是最合乎搜索引擎，当然，这太极端了，不过如果采用
+		XHTML+CSS技术将页面数据同表现分离，即避免大量嵌套表格和其它多余的代码还是能够完美实现这一要求的；
+
+	</body>
+</html>
+
+
+
+
+
+
+
